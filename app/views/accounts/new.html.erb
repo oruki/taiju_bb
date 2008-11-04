@@ -1,0 +1,74 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>児童預金台帳（新規登録)</td>
+  </tr>  
+</TABLE>
+
+<% form_for(@account) do |f| %>
+<%= f.error_messages %>
+
+<TABLE ID="menu2" CLASS="part"> 
+<tr>
+  <td colspan=32 style="text-align:right; ">
+      <%= link_to '一覧表示', accounts_path %>
+  </td>
+</tr>
+<tr>
+  <% 31.times do |i| %>
+    <td></td>
+  <% end %>
+  <td onmouseover="this.style.background='red';this.style.cursor='pointer'"
+      onmouseout="this.style.background='white';" onclick="alert('bang')">
+  </td>
+</tr>
+<tr>
+  <th colspan=12>日　付</th>
+  <td colspan=20>
+    <%= f.date_select :hizuke, :use_month_numbers => true,
+                      :start_year => Date.today.years_ago(3).year,
+                      :end_year => Date.today.years_since(3).year %>
+  </td>
+</tr>
+<tr>
+  <th colspan=12>児童名</th>
+  <td colspan=20><%=@boys = Boy.find(:all, :order => "id").map {|u| [u.name, u.id] }
+     f.select(:boy_id, @boys, {:include_blank => true})%></td>
+</tr>
+<tr>
+  <th colspan=12>金　額</th>
+  <td colspan=20><%= f.text_field :amount %></td>
+</tr>
+<tr>
+  <th colspan=12>受付者</th>
+  <td colspan=20><%= f.text_field :rcv_name %></td>
+</tr>
+<tr>
+  <th colspan=12>保　管</th>
+  <td colspan=20><%= f.text_field :acnt %></td>
+</tr>
+<tr>
+  <th colspan=12>内　容</th>
+  <td colspan=20><%= f.text_field :desc %></td>
+</tr>
+<tr>
+  <th colspan=12>備　考</th>
+  <td colspan=20><%= f.text_field :misc %></td>
+</tr>
+<tr>
+  <th colspan=12>登録／更新</th>
+  <td colspan=20><%= f.submit "登録／更新" %>&nbsp;&nbsp;&nbsp
+  <%= link_to 'このレコードを削除する', @account, :confirm => '本当に削除しますか?', :method => :delete %></td>
+</tr>
+</TABLE>
+<% end %>
+
+
+<TABLE ID="menu2" CLASS="part"> 
+  <tr>
+    <% 31.times do |i| %>
+    <td></td>
+    <% end %>
+    <td onmouseover="this.style.background='red';this.style.cursor='pointer'"
+        onmouseout="this.style.background='white';" onclick="alert('bang')"></td>
+  </tr>
+</TABLE>

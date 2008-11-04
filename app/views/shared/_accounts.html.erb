@@ -1,0 +1,46 @@
+<div ID="accounts">
+
+<TABLE ID="menu2" CLASS="part"> 
+  <tr>
+    <% 32.times do |i| %>
+    <td></td>
+    <% end %>
+  </tr>
+  <tr>
+    <th colspan=6>日付/児童ID</th>
+    <th colspan=6>ﾌﾘｶﾞﾅ/氏名</th>
+    <th colspan=5>金　額</th>
+    <th colspan=5>受付/保管</th>
+    <th colspan=10>内容／備考</th>
+  </tr>
+
+<% for account in accounts %>
+  <tr>
+    <td colspan=6>
+      <%=h account.hizuke.to_time.strftime"%Y年%m月%d日" if account.hizuke %><br>
+      <%=h account.boy_id %>
+    </td>
+    <td colspan=6>
+      <span style="font-size:10px">
+      <%=h account.boy.kana_name %><br>
+      </span>
+      <%#=h account.boy.name %>
+  　　<%= link_to_remote (account.boy.name, :url =>{:controller => :selects, :action => "select_accounts", :id => account, :boy => account.boy}) %>
+    </td>
+    <td colspan=5 style="text-align:right; padding-right:10px">
+      <%=h number_with_delimiter(account.amount) %></td>
+    <td colspan=5>
+      <%=h account.rcv_name %><br>
+      <%=h account.acnt %>
+    </td>
+    <td colspan=9>
+      <%=h account.desc %><br>
+      <%=h account.misc %>
+    </td>
+    <td><%= link_to image_tag("edit.gif", :border=>0), edit_account_path(account) %></td>
+  </tr>
+<% end %>
+
+
+</TABLE>
+</div>

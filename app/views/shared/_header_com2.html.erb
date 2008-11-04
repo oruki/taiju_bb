@@ -1,0 +1,71 @@
+<!--     ﾗｼﾞｵﾎﾞﾀﾝの場合{:method=>:get}必要
+         ajaxのﾒｿｯﾄﾞを呼び表示部分を書き換える　どのﾓｼﾞｭｰﾙを表示？
+         又は全てのﾓｼﾞｭｰﾙを先に計算しておく？
+-->
+    <%# form_remote_tag ( :url => { :action => :sel, :id => @attend, :method => "get" }) do %>
+  <% form_remote_tag ( :url => { :action => :sel, :id => @attend}) do %>  
+  <tr>
+　  <% 32.times do %>
+      <td></td>
+    <% end %>
+  </tr>
+  
+  <tr>
+    <td colspan=3 style="font-size:12px;">
+      期間：
+    </td>
+    <td colspan=4 style="font-size:11px;">
+      <label><%= radio_button_tag (:jido, 'selected', checked = (params[:jido]=='selected')) %>担当児童</label>
+      <label><%= radio_button_tag (:jido, 'all',      checked = (params[:jido]=='all')) %>全児童  </label>
+    </td>
+    
+    <td colspan=4 style="font-size:11px;">
+      <label>
+        <%= radio_button_tag (:year, Date.today.last_year.year, checked = (params[:year]==Date.today.year.to_s)) %>
+        <%= Date.today.last_year.year %>年
+      </label>
+      <label>
+        <%= radio_button_tag (:year, Date.today.year,           checked = (params[:year]==Date.today.year.to_s)) %>
+        <%= Date.today.year %>年
+      </label>
+    </td>
+    
+    <td colspan=15 style="font-size:11px;">
+      <label><%= radio_button_tag (:month, '01' ,checked = (params[:month]=='01')) %>01月</label>
+      <label><%= radio_button_tag (:month, '02' ,checked = (params[:month]=='02')) %>02月</label>
+      <label><%= radio_button_tag (:month, '03' ,checked = (params[:month]=='03')) %>03月</label>
+      <label><%= radio_button_tag (:month, '04' ,checked = (params[:month]=='04')) %>04月</label>
+      <label><%= radio_button_tag (:month, '05' ,checked = (params[:month]=='05')) %>05月</label>
+      <label><%= radio_button_tag (:month, '06' ,checked = (params[:month]=='06')) %>06月</label><br>
+      <label><%= radio_button_tag (:month, '07' ,checked = (params[:month]=='07')) %>07月</label>
+      <label><%= radio_button_tag (:month, '08' ,checked = (params[:month]=='08')) %>08月</label>
+      <label><%= radio_button_tag (:month, '09' ,checked = (params[:month]=='09')) %>09月</label>
+      <label><%= radio_button_tag (:month, '10' ,checked = (params[:month]=='10')) %>10月</label>
+      <label><%= radio_button_tag (:month, '11' ,checked = (params[:month]=='11')) %>11月</label>
+      <label><%= radio_button_tag (:month, '12' ,checked = (params[:month]=='12')) %>12月</label>
+    </td>
+
+    <td colspan=6>
+      <%= submit_tag "選択" %>
+      <%= link_to '新規登録', :action=>"new" %>  
+    <br>
+      <%= link_to '今月表示', :action=>"index", :month => Date.today.month, :year=> Date.today.year %> 
+      <%= link_to '全体表示', :action=>"index" %> 
+    </td>
+  </tr>
+  
+  <tr> 
+    <td colspan=23>
+      <label style="margin-left:20px;"><%= radio_button_tag (:knd, 'shidou',   checked = (params[:knd]=='shidou'  )) %>生活記録</label>
+      <label style="margin-left:20px;"><%= radio_button_tag (:knd, 'school',   checked = (params[:knd]=='school'  )) %>学校記録</label>
+      <label style="margin-left:20px;"><%= radio_button_tag (:knd, 'med',      checked = (params[:knd]=='med'     )) %>医療記録</label>
+      <label style="margin-left:20px;"><%= radio_button_tag (:knd, 'stay_out', checked = (params[:knd]=='stay_out')) %>面会外泊記録</label>
+    </td>
+    <td colspan=9 style="text-align:right;">
+      <span style="margin-right:25px">
+        レコード件数：<%#= recs.size %>件
+      </span>
+      <%= params[:year] %>年<%= params[:month] %>月
+    </td>
+  </tr>
+ <% end %>

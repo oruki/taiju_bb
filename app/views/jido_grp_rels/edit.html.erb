@@ -1,0 +1,45 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>児童ｸﾞﾙｰﾌﾟ関係（編集）</td>
+  </tr>  
+</TABLE>
+
+<TABLE ID="menu2" CLASS="part">
+<%= error_messages_for :jido_grp_rel %>
+<% g=Group.find(:all).map{|i| [i.name, i.id] } %>
+  <tr>
+    <td colspan=32 style="text-align:right; ">
+    <%= link_to '一覧表示', jido_grp_rels_path %>
+  </td>
+</tr>
+<tr>
+  <% 32.times do %>
+    <td></td>
+  <% end %>
+</tr>
+<% form_for(@jido_grp_rel) do |f| %>
+  <tr>
+    <th colspan=12>児童</th>
+    <td colspan=20><%= f.select(:boy_id, Boy.find(:all).map{|i|[i.name,i.id]}, {:include_blank => true} ) %></td>
+  </tr>
+
+  <tr colspan=12>
+    <th colspan=12>グループ</b><br />
+    <td colspan=20><%= f.select(:group_id, Group.find(:all).map{|i|[i.name,i.id]}, {:include_blank => true} ) %></td>
+  </tr>
+
+  <tr colspan=12>
+    <th colspan=12>期限</th>
+    <td colspan=20>
+      <%= f.date_select(:date_expired,{:include_blank=>true,
+                                    :start_year=>1985, :end_year=>Date.today.year.to_i,
+                                    :use_month_numbers => true}) %> 
+    </td>
+  </tr>
+
+  <tr colspan=12>
+    <th colspan=12>登録/更新</th>
+    <td colspan=20><%= f.submit "登録/更新" %></td>
+  </tr>
+<% end %>
+</TABLE>

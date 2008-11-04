@@ -1,0 +1,74 @@
+  <!--
+7/13 追記
+指導員や児童をクリックしそのメンバーだけのレコードを抽出するアルゴリズムを変更する
+ＡＪＡＸを導入することでページの遷移が生じないため１つの集中的なコントローラーで処理が可能
+専用コントローラーajxesを設ける各アクションはshidou_recs,med_rec,school_recなど該当コントローラー
+の名称のアクション名とする。それぞれのアクションのビュー（.rjs）でreplace_htmlを実行する。部分
+ﾃﾝﾌﾟﾚｰﾄを呼ぶ場合に以前のように:localsでパラメーターを渡す必要がなくなる。またコントローラー個別に
+同じような記述を繰り返す必要もなくなる。
+-->
+<!-- <h3>指導記録　部分ﾃﾝﾌﾟﾚｰﾄ</h3> -->
+<div ID="shidou_recs">
+<%= javascript_include_tag :defaults %>
+<table ID="menu2" CLASS="part">
+<tr>
+  <% 32.times do |i| %>
+    <td></td>
+  <% end %>
+</tr>
+
+<tr>
+  <th colspan=4>日付/ｽﾀｯﾌ</th>
+  <th colspan=4>ID/児童名</th>
+  <th colspan=4>ｶﾃｺﾞﾘｰ</th>
+  <th colspan=20>
+   記述
+  </th>
+</tr>
+
+<% for s in shidou %>
+<tr>
+  <td colspan=4>
+    <%= h s.date %><br>
+    <%= link_to_remote (s.staff.name, :url =>{:controller => :selects, 
+                                              :action => "hit", 
+                                              :id => s,
+                                              :staff => s.staff}) %>     <!-- 期間ﾊﾟﾗﾒｰﾀｰ（mm yy）はｾｯｼｮﾝから取得するように変更 -->
+  </td>
+
+  <td colspan=4>
+    <%= h s.boy.id %><br>
+
+    <%= link_to_remote (s.boy.name, :url =>{:controller => :selects, 
+                                              :action => "hit", 
+                                              :id => s,
+                                              :boy => s.boy}) %>         <!-- 期間ﾊﾟﾗﾒｰﾀｰ（mm yy）はｾｯｼｮﾝから取得するように変更 -->
+  </td>
+
+  <td colspan=4>
+    <!-- h s.cat -->
+    <%= h s.cat %>
+  </td>
+
+  <td colspan=18>
+    <!-- h s.desc -->
+    <%= h s.desc %>
+  </td>
+  
+  <td>
+    <% if s.staff == current_user.staff %>
+      <%= link_to image_tag("edit.gif", :border=>0),edit_shidou_rec_path(s) %>
+    <% end %>           
+  </td>
+                
+  <td>
+    <% if s.staff == current_user.staff %>  
+      <%= link_to image_tag("delete.gif", :border=>0), s, :confirm =>'本当に削除しますか?', :method => :delete %>
+    <% end %>                    
+  </td>
+</tr>
+<% end %>
+
+</table>
+
+</div>

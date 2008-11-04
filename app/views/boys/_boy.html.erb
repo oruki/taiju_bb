@@ -1,0 +1,44 @@
+<TABLE ID="menu2" CLASS="part">
+<%= error_messages_for :boy %>
+<% form_for(@boy) do |f| %>
+<tr>
+  <% 32.times do %>
+    <td></td>
+  <% end %>
+</tr>
+<tr>
+  <th colspan=10>フリガナ</th>
+  <td colspan=22>
+    <%= f.text_field :kana_name %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>氏　名</th>
+  <td colspan=22>
+    <%= f.text_field :name %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>生年月日</th>
+  <td colspan=22>
+    <%= f.date_select(:birthdate,{:include_blank=>true,
+                                  :start_year=>1985, :end_year=>Date.today.year.to_i,
+                                  :use_month_numbers => true,
+                                  :minute_step =>15})  %> 
+  </td>
+</tr>
+<tr>
+  <th colspan=10>性　別</th>
+  <td colspan=22>
+    <%= f.select ( :sex, [['男',1],['女',2]], {:include_blank => true}) %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>登録／更新</th>
+  <td colspan=22>
+     <%= f.submit "登録／更新" %>
+     <%= link_to 'このレコードを削除する', @boy, :confirm => '本当に削除しますか?', :method => :delete %> 
+  </td>
+</tr>
+<% end %>
+</TABLE>

@@ -1,0 +1,33 @@
+<!-- <h3>指導記録　部分ﾃﾝﾌﾟﾚｰﾄ</h3> -->
+
+<table ID="menu2" CLASS="fix">
+  <tr height=3px>
+    <% 32.times do |i| %>
+    <td></td>
+    <% end %>
+  </tr>
+
+  <tr>
+    <th colspan=5>日付／担当</th>
+    <th colspan=5>カテゴリー</th>
+    <th colspan=22>記　述</th>
+  </tr>
+
+<% for shidou_rec in case_shidou %>
+  <tr>
+    <td colspan=5>
+      <%= h shidou_rec.date %><br>
+      <%= h shidou_rec.staff.name %>
+    </td>
+    <td colspan=5>
+      <%=h shidou_rec.cat %>
+    </td>
+    <td colspan=21>
+      <%=h shidou_rec.desc %>
+    </td>
+ 
+    <td colspan=1><%= link_to 'E', edit_shidou_rec_path(shidou_rec) %></td>
+
+  </tr>
+<% end %>
+</table>

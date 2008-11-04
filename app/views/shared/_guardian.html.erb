@@ -1,0 +1,84 @@
+<%= error_messages_for :guardian %>
+<% form_for(@guardian) do |f| %>
+<table ID="menu2" CLASS="part">
+  <tr>
+  <% 32.times do %>
+    <td></td>
+  <% end %>
+  </tr>
+<tr>
+  <th colspan=10>
+    フリガナ
+  </th>
+  <td colspan=22>
+    <%= f.text_field :kana_name %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>名前</th>
+  <td colspan=22>
+    <%= f.text_field :name %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>生年月日</th>
+  <td colspan=22>    
+    <%= f.date_select(:birth_date,{:include_blank=>true,
+                                  :start_year=>1935, :end_year=>Date.today.year.to_i,
+                                  :use_month_numbers => true,
+                                  :minute_step =>15})  %>      
+  </td>
+</tr>
+<tr>
+  <th colspan=10>性別</th>
+  <td colspan=22>
+    <%= f.text_field :sex %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>電話</th>
+  <td colspan=22>
+    <%= f.text_field :tel %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>携帯</th>
+  <td colspan=22>
+    <%= f.text_field :tel_hp %>
+  </td>
+</tr>
+
+<tr>
+  <th colspan=10>健康</th>
+  <td colspan=22>
+    <%= f.text_field :cond_health %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>職業</th>
+  <td colspan=22>
+    <%= f.text_field :occupation %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>収入</th>
+  <td colspan=22>
+    <%= f.text_field :cond_income %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>その他</th>
+  <td colspan=22>
+    <%= f.text_field :misc %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>登録／更新</th>
+  <td colspan=22>
+    <%= f.submit "Update" %>&nbsp;&nbsp;&nbsp;
+　　<%= link_to 'このレコードを削除する', @guardian, :confirm => '本当に削除しますか?', :method => :delete %>
+  </td>
+</tr>
+
+</table>
+<% end %>

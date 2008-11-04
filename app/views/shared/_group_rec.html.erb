@@ -1,0 +1,58 @@
+<% form_for(group_rec) do |f| %>
+<%= f.error_messages %>
+<table ID="menu2" CLASS="part">
+  <tr>
+    <% 32.times do %>
+      <td></td>
+    <% end %>
+  </tr>
+  
+  <tr>
+    <th colspan=12>日付</th>
+    <td colspan=20>
+      <%#= calendar_date_select :group_rec, :hizuke %>
+      <%= f.date_select(:hizuke,{ :include_blank => true, 
+                                  :use_month_numbers => true,
+                                  :start_year => Date.today.years_ago(3).year, 
+                                  :end_year   => Date.today.year})  %>
+    </td>    
+  </tr>
+  
+  
+  <tr> 
+    <th colspan=12>ｸﾞﾙｰﾌﾟ</th>
+    <td colspan=20>
+      <%= f.select(:group_id, @gp, {:include_blank => true}) %>
+    </td>
+  </tr>
+
+
+  <tr> 
+    <th colspan=12>指導員</th>  
+    <td>
+      <% ss = Staff.find(:all, :order => "id").map {|u| [u.name, u.id] } %>
+      <%= f.select(:staff_id, ss, {:include_blank => true}) %></td>
+  </tr>
+  
+  <tr> 
+    <th colspan=12>記録</th>
+    <td colspan=20><%= f.text_area :desc, :rows => 2, :cols =>50 %></td>
+  </tr>  
+   
+  <tr> 
+    <th colspan=12>伺 い</th>
+    <td colspan=20><%= f.text_area :query, :rows => 2, :cols =>50 %></td>
+  </tr>
+  
+  <tr>      
+    <th colspan=12>備考</th>
+    <td colspan=20><%= f.text_area :misc, :rows => 2, :cols =>50 %></td>
+  </tr>
+  
+  <tr>
+    <th colspan=12>登録／更新</th>
+    <td colspan=20><%= f.submit "登録／更新" %></td>
+  </tr>
+   
+</table>
+<% end %>

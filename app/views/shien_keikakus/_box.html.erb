@@ -1,0 +1,18 @@
+<!--
+支援計画
+#支援計画書式の固有記載項目を編集するための編集ボックスを描画する
+#サブミットボタンで入力確定し元の欄を更新する
+-->
+<%= params[:attr] %>
+<% remote_form_for :shien_keikaku, :url => {:action => "update", :attr => @attr}  do |f| %>    
+<TABLE ID="ibx" CLASS="part">
+  <tr>
+    <td style="width:85%; border:solid 0px; ">
+        <%= f.text_area box, :rows => 3, :cols => 75 %>
+    </td>
+    <td style="width:15%">
+        <%= f.submit "更新" %>
+    </td>     
+  </tr> 
+</TABLE>
+<% end %> 

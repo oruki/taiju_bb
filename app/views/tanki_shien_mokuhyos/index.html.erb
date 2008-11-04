@@ -1,0 +1,41 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>短期支援目標（<%= @title %>）</td>
+  </tr>  
+</TABLE>
+
+<TABLE ID="menu2" CLASS="part">
+  <tr>
+    <td colspan=32 style="text-align:right; ">
+      <span style="margin-right:25px">レコード件数：<%= @tanki_shien_mokuhyos.size %></span>
+      <%= link_to '新規登録', new_tanki_shien_mokuhyo_path %>
+    </td>
+  </tr>
+  <tr>
+    <% 32.times do |i| %>
+      <td></td>
+    <% end %>
+  </tr>
+
+  <tr>
+    <td colspan=32>
+      <% form_tag({:action => :index},{:method=>:get}) do %>
+      
+        <label style="margin-left:20px;"><%= radio_button_tag (:cat, 'cat-01', checked = (params[:cat]=='cat-01')) %>子ども</label>
+        <label style="margin-left:20px;"><%= radio_button_tag (:cat, 'cat-02', checked = (params[:cat]=='cat-02')) %>家庭</label>
+        <label style="margin-left:20px;"><%= radio_button_tag (:cat, 'cat-03', checked = (params[:cat]=='cat-03')) %>地域</label>
+        <label style="margin-left:20px;"><%= radio_button_tag (:cat, 'cat-04', checked = (params[:cat]=='cat-04')) %>総合</label>
+           
+        <%= select_tag "fruits", options_for_select("apple"=>1, "orange"=>2, "pear"=>3, "grape"=>4) %>
+        <!--
+         @options_for_mokuhyoは児童名と支援計画IDのｾｯﾄでｾﾚｸﾄﾍﾙﾊﾟｰで使用する
+         ﾍﾟｰｼﾞﾀｲﾄﾙに児童名を表示できるように@titleなどをｺﾝﾄﾛﾗｰでｾｯﾄする
+         -->
+        <%= select_tag "shien_keikaku_id", options_for_select(@options_for_mokuhyo) %>
+        <%= submit_tag '選択する' %>
+      <% end %>
+    </td>
+  </tr>
+</TABLE>
+
+<%= render(:partial => "shared/tanki_shien_mokuhyos", :object=> @tanki_shien_mokuhyos) %>

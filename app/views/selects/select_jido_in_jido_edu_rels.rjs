@@ -1,0 +1,8 @@
+page.replace_html("jido_edu_rels",
+  :partial => "shared/jido_edu_rels",
+  :object => @jido_edu_rels
+)
+
+page["jido_edu_rels"].visual_effect :highlight,
+                                  :startcolor => "#ff9900",
+                                  :endcolor   => "#ffff99"

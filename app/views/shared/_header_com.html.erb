@@ -1,0 +1,69 @@
+<!-- used in the header of *rec views -->
+<TABLE ID="menu2" class="part">
+  <tr>
+    <% 32.times do |i| -%>
+      <td></td>
+    <% end %>
+  </tr>
+  <tr>
+    <td colspan=32 style="text-align:right; font-size:11px;">
+      <span style="margin-right:25px">レコード件数：
+        <span ID="shidou_recs_cnt">
+          <%= recs.size %>件
+        </span>
+      </span>
+        <% case params[:month]
+        when "aa" -%> 
+          全月
+        <% when "tm" -%> 
+          今月             
+        <% else -%>
+          <%= session[:yy] if session[:yy] %>年<%= params[:month] %>月 
+        <% end -%>  
+    </td>
+  </tr>
+  <tr>
+    <td colspan=3 style="font-size:12px;">
+      期　間：
+    </td>
+    
+    <% form_tag( {:action => :index }, {:method => :get} ) do %>
+    <!--
+    ﾌｫｰﾑが呼ぶｱｸｼｮﾝは*rec_controller/indexなので夫々に同じｺｰﾄﾞが必要（ｾｯｼｮﾝの設定など）
+    params[:year],params[:month]を設定してｱｸｼｮﾝに送る
+    各ﾗｼﾞｵﾎﾞﾀﾝのchecked値は更新されたｾｯｼｮﾝ値と連動する
+    -->
+    <td colspan=4 style="font-size:11px;">   
+      <label>
+        <%= radio_button_tag (:year, Date.today.last_year.strftime("%Y"), checked = (session[:yy]==Date.today.last_year.strftime("%Y"))) %>        
+        <%= Date.today.last_year.year %>年
+      </label>
+      <label>
+        <%= radio_button_tag (:year, Date.today.strftime("%Y"),           checked = (session[:yy]==Date.today.strftime("%Y"))) %>        
+        <%= Date.today.year %>年
+      </label>
+    </td>
+  
+    <td colspan=19 style="font-size:11px;">
+      <label><%= radio_button_tag (:month, '01' ,checked = (session[:mm]=='01')) %>01月</label>
+      <label><%= radio_button_tag (:month, '02' ,checked = (session[:mm]=='02')) %>02月</label>
+      <label><%= radio_button_tag (:month, '03' ,checked = (session[:mm]=='03')) %>03月</label>
+      <label><%= radio_button_tag (:month, '04' ,checked = (session[:mm]=='04')) %>04月</label>
+      <label><%= radio_button_tag (:month, '05' ,checked = (session[:mm]=='05')) %>05月</label>
+      <label><%= radio_button_tag (:month, '06' ,checked = (session[:mm]=='06')) %>06月</label>
+      <label><%= radio_button_tag (:month, 'aa' ,checked = (session[:mm]=='aa')) %>全月</label><br>      
+      <label><%= radio_button_tag (:month, '07' ,checked = (session[:mm]=='07')) %>07月</label>
+      <label><%= radio_button_tag (:month, '08' ,checked = (session[:mm]=='08')) %>08月</label>
+      <label><%= radio_button_tag (:month, '09' ,checked = (session[:mm]=='09')) %>09月</label>
+      <label><%= radio_button_tag (:month, '10' ,checked = (session[:mm]=='10')) %>10月</label>
+      <label><%= radio_button_tag (:month, '11' ,checked = (session[:mm]=='11')) %>11月</label>
+      <label><%= radio_button_tag (:month, '12' ,checked = (session[:mm]=='12')) %>12月</label>
+      <label><%= radio_button_tag (:month, 'tm' ,checked = (session[:mm]=='tm')) %>今月</label>       
+    </td>
+    <td colspan=6 style="font-size:11px;">   
+      <%= submit_tag "月選択" %><br>
+      <%= link_to '新規登録', :action=>"new" %>
+    <% end -%>
+    </td>
+  </tr>
+</table>

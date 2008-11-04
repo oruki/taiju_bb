@@ -1,0 +1,81 @@
+<!--
+ 2008.08.15
+ form_remote_tagの表現方法の問題
+ テーブルタグの関係で不用意な位置にform_remote_tagを置くと実際のHTMLで順番が変化しエラーの原因となる
+ この部分ﾃﾝﾌﾟﾚｰﾄはウェブ参照より順次変更した（http://www008.upp.so-net.ne.jp/letitbe/rails_ajax003.htm）
+ 当初部分ﾃﾝﾌﾟﾚｰﾄ（）との差が確認できないが、これを改名して「_extract_panel」としてattendsViewフォルダーに置く
+ 2008-08-19
+ case_recsなど他のモデルからの利用を考えて汎用の部分テンプレートに変更する
+ 名称は_form >> _selectorとする
+ 参考：<%# form_remote_tag( :url => { :controller => :selects, :action => :sel, :view => :attend_view, :id => @attend } ) do -%> 
+-->
+<!-- 指導員勤務記録（attends/show）で使用する -->
+
+<% form_remote_tag( :url => { :controller => :selects, :action => :sel, :view => :case_rec_view, :id => @case_rec } ) do -%>
+<TABLE ID="menu2" CLASS="part">
+  <tr>
+　  <% 32.times do %>
+      <td></td>
+    <% end %>
+  </tr>
+  
+  <tr>
+    <td colspan=3 style="font-size:12px;">
+      対　象：
+    </td>
+    <td colspan=23>
+      <label style="margin-left:20px;"><%= radio_button_tag (:knd, 'shidou',   checked = (params[:knd]=='shidou'  )) %>生活記録</label>
+      <label style="margin-left:20px;"><%= radio_button_tag (:knd, 'school',   checked = (params[:knd]=='school'  )) %>学校記録</label>
+      <label style="margin-left:20px;"><%= radio_button_tag (:knd, 'med',      checked = (params[:knd]=='med'     )) %>医療記録</label>
+      <label style="margin-left:20px;"><%= radio_button_tag (:knd, 'stay_out', checked = (params[:knd]=='stay_out')) %>面会外泊記録</label>
+    </td>
+    <td colspan=6 style="text-align:right;">
+      <span style="margin-right:25px">
+      <div ID="recnbr">
+        ﾚｺｰﾄﾞ件数：<%#= recs.size %>件
+      </div>  
+      </span>
+    </td>
+  </tr>
+  
+  <tr>
+    <td colspan=3 style="font-size:12px;">
+      期　間：
+    </td>    
+    <td colspan=4 style="font-size:11px;">
+      <label>
+        <%= radio_button_tag (:year, Date.today.last_year.year, checked = (params[:year]==Date.today.year.to_s)) %>
+        <%= Date.today.last_year.year %>年
+      </label>
+      <label>
+        <%= radio_button_tag (:year, Date.today.year,           checked = (params[:year]==Date.today.year.to_s)) %>
+        <%= Date.today.year %>年
+      </label>
+    </td>
+    
+    <td colspan=19 style="font-size:11px;text-align:center;">
+      <label><%= radio_button_tag (:month, '01' ,checked = (params[:month]=='01')) %>01月</label>
+      <label><%= radio_button_tag (:month, '02' ,checked = (params[:month]=='02')) %>02月</label>
+      <label><%= radio_button_tag (:month, '03' ,checked = (params[:month]=='03')) %>03月</label>
+      <label><%= radio_button_tag (:month, '04' ,checked = (params[:month]=='04')) %>04月</label>
+      <label><%= radio_button_tag (:month, '05' ,checked = (params[:month]=='05')) %>05月</label>
+      <label><%= radio_button_tag (:month, '06' ,checked = (params[:month]=='06')) %>06月</label>
+      <label><%= radio_button_tag (:month, 'aa' ,checked = (params[:month]=='aa')) %>全月</label><br>      
+      <label><%= radio_button_tag (:month, '07' ,checked = (params[:month]=='07')) %>07月</label>
+      <label><%= radio_button_tag (:month, '08' ,checked = (params[:month]=='08')) %>08月</label>
+      <label><%= radio_button_tag (:month, '09' ,checked = (params[:month]=='09')) %>09月</label>
+      <label><%= radio_button_tag (:month, '10' ,checked = (params[:month]=='10')) %>10月</label>
+      <label><%= radio_button_tag (:month, '11' ,checked = (params[:month]=='11')) %>11月</label>
+      <label><%= radio_button_tag (:month, '12' ,checked = (params[:month]=='12')) %>12月</label>
+      <label><%= radio_button_tag (:month, 'tm' ,checked = (params[:month]=='tm')) %>今月</label>    
+    </td>
+
+    <td colspan=6 style="font-size:11px;text-align:center;">
+      <%= submit_tag "選択" %> &nbsp;&nbsp;
+      <%= link_to '新規', :action=>"new" %>  
+    </td>
+  </tr>
+  
+</TABLE>
+
+<% end %>

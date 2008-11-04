@@ -1,0 +1,12 @@
+<h3>健康医療記録</h3>
+<% # for column in MedRec.content_columns %>
+
+<% for column in MedRec.columns %>
+
+<p>
+  <b><%= column.human_name %>:</b> <%=h @med_rec.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', edit_med_rec_path(@med_rec) %> |
+<%= link_to 'Back', med_recs_path %>

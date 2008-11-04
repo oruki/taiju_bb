@@ -1,0 +1,7 @@
+page.replace_html("shidou_recs",
+      :partial => "shared/shidou",
+      :object => @shidou_recs)
+page.replace_html("shidou_recs_cnt",@shidou_recs_cnt.to_s)
+page["shidou_recs"].visual_effect :highlight,
+                                  :startcolor => "#ff9900",
+                                  :endcolor   => "#ffff99"

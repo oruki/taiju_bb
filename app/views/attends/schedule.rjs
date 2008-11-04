@@ -1,0 +1,4 @@
+page.replace_html("abcd", @yotei) 
+page["abcd"].visual_effect :highlight,
+                                  :startcolor => "#ff9900",
+                                  :endcolor   => "#ffff99"

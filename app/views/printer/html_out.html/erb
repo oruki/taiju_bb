@@ -1,0 +1,3 @@
+<%- for i in @boys -%>
+  <%= NKF.nkf("-s -W8",i.name) %>,<%= NKF.nkf("-s -W8",i.kana_name) %>,<%= NKF.nkf("-s -W8",i.birthdate.to_s) %>
+<%- end -%>

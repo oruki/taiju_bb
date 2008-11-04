@@ -1,0 +1,2 @@
+module ShienKeikakusHelper
+end

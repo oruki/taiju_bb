@@ -1,0 +1,27 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>ｸﾞﾙｰﾌﾟ記録（一覧）</td>
+  </tr>  
+</TABLE>
+<%= render(:partial => "shared/header_com",
+           :locals => {:recs => @group_recs}) %>
+
+<TABLE ID="menu2" CLASS="part">
+<tr>
+  <td style="text-align:right;">
+    <span>
+      ｸﾞﾙｰﾌﾟの選択:&nbsp;&nbsp;
+      <% for i in @groups %>
+        <%= link_to(i[0], :action => "index", :grp => i[2]) -%> ｜
+      <% end %>
+      <%= link_to('全ｸﾞﾙｰﾌﾟ', :action => "index") -%> ｜
+    </span>
+    <span>
+      <%= link_to '新規登録', new_group_rec_path -%>
+    </span>
+  </td>
+</tr>
+</TABLE>
+
+<%= render(:partial => "shared/group_recs", 
+           :object => @group_recs) %>

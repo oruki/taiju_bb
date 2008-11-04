@@ -1,0 +1,303 @@
+<!-- ■表題部分■ -->
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>自立支援計画票</td>
+  </tr>  
+</TABLE>
+
+<TABLE ID="menu2" CLASS="part">
+<tr>
+  <td style="text-align:right; ">
+    <%= link_to '編　集', edit_shien_keikaku_path(@shien_keikaku) %> |
+    <%= link_to '一覧表示', shien_keikakus_path %>
+  </td>
+</tr>
+<tr>
+  <td style="text-align:center;">自立支援計画票</td>
+</tr>
+</TABLE>
+
+<TABLE ID="menu2" CLASS="part">
+<!-- ■入力ボックス■ -->
+<div id="box" style="color:#cccccc; text-align:center;">
+<tr><td colspan=32 style="height:6px; text-align:center"></td></tr>
+</div>
+<tr>
+  <% 32.times do %>
+    <td></td>
+  <% end %>
+</tr>
+<!-- ■本体部分■ -->
+
+  <tr>
+    <% 32.times do %>
+    <td></td>
+    <% end %>
+  </tr>
+<!--
+支援計画各入力欄の「編集」リンクから呼ばれて当該編集入力パーツを表示モードに変える
+-->  
+  <tr ID="sakutei_bango" style="display:none;">
+    <td colspan=27>
+      <% form_for(@shien_keikaku) do |f| %>   
+      <%= f.text_field :sakutei_bango, :rows => 2, :cols => 70 %>
+    </td>
+    <td colspan=5><%= f.submit "登録/更新" %></td>
+  </tr>
+    
+  <tr ID="jido_id" style="display:none;">
+    <td colspan=27>
+      <% bb = Boy.find(:all, :order => "id").map {|u| [u.name, u.id] } %>
+      <%= f.select(:boy_id, bb, {:include_blank => true}) %>
+    </td>
+    <td colspan=5><%= f.submit "登録/更新" %></td>
+  </tr>
+   
+  <tr ID="staff_id" style="display:none;">
+    <td colspan=27>
+      <% ss = Staff.find(:all, :order => "id").map {|u| [u.name, u.id] } %>
+      <%= f.select(:staff_id, ss, {:include_blank => true}) %>
+    </td>
+    <td colspan=5>
+      <%= f.submit "登録/更新" %><br>
+      <%= link_to_function '中止',visual_effect(:fade, "staff_id") %>
+    </td>
+  </tr>   
+  
+  <tr ID="shutaru_mondai" style="display:none;">
+    <td colspan=27><%= f.text_area :shutaru_mondai, :rows => 2, :cols => 70 %></td>
+    <td colspan=5>
+     <%= f.submit "登録/更新" %><br>
+     <%= link_to_function '中止',visual_effect(:fade, "shutaru_mondai") %>
+    </td>
+  </tr>  
+  
+  <tr ID="honnin_ikou" style="display:none;">
+    <td colspan=27><%= f.text_area :honnin_ikou, :rows => 2, :cols => 70 %></td>
+    <td colspan=5>
+      <%= f.submit "登録/更新" %><br>
+      <%= link_to_function '中止',visual_effect(:fade, "honnin_ikou") %>
+    </td>
+  </tr>
+  
+  <tr ID="hogosha_ikou" style="display:none;">
+    <td colspan=27><%= f.text_area :hogosha_ikou, :rows => 2, :cols => 70 %></td>
+    <td colspan=5>
+      <%= f.submit "登録/更新" %><br>
+      <%= link_to_function '中止',visual_effect(:fade, "hogosha_ikou") %>
+    </td>
+  </tr>
+  
+  <tr ID="school_iken" style="display:none;">
+    <td colspan=27><%= f.text_area :school_iken, :rows => 2, :cols => 70 %></td>
+    <td colspan=5>
+      <%= f.submit "登録/更新" %><br>
+      <%= link_to_function '中止',visual_effect(:fade, "school_iken") %>
+    </td>
+  </tr>  
+
+  <tr ID="jidou_sodan_kyogi" style="display:none;">
+    <td colspan=27><%= f.text_area :jidou_sodan_kyogi, :rows => 2, :cols => 70 %></td>
+    <td colspan=5>
+      <%= f.submit "登録/更新" %><br>
+      <%= link_to_function '中止',visual_effect(:fade, "jidou_sodan_kyogi") %>
+    </td>
+  </tr>
+  
+  <tr ID="shien_hoshin" style="display:none;">
+    <td colspan=27><%= f.text_area :shien_hoshin, :rows => 2, :cols => 70 %></td>
+    <td colspan=5>
+      <%= f.submit "登録/更新" %><br>
+      <%= link_to_function '中止',visual_effect(:fade, "shien_hoshin") %>
+    </td>
+  </tr>
+
+  <tr ID="submit" style="display:none;">
+    <td><% end %></td>
+  </tr>
+<!--
+以上　隠し入力フィールド -->
+
+
+<tr>
+  <th colspan="5">施設名：</th>
+  <td colspan="15"></td>
+  <th colspan="4">作成者名：</th>
+  <td colspan="8">
+    <div ID="seisakusha">
+      <%= @seisakusha -%>
+    </div>
+  </td>
+</tr>
+<tr>
+  <th colspan="5">ﾌﾘｶﾞﾅ子ども氏名</th>
+  <td colspan="8"><%= @shien_keikaku.boy.name %></td>
+  <th colspan="3">性別</th>
+  <td colspan="4"><%= @boy.sex %></td>
+  <th colspan="4">年月日</th>
+  <td colspan="8"><%= @boy.birthdate.age %></td>
+</tr>
+<tr>
+  <th colspan="5">保護者氏名</th>
+  <td colspan="8"><%= @boy.guardians[0].name %></td>
+  <th colspan="3">続柄</th>
+  <td colspan="4"><%= @boy.jido_guardian_rels[0].zokugara %></td>
+  <th colspan="4">作成年月日</th>
+  <td colspan="8"><%= @shien_keikaku.created_at %></td>
+</tr>
+
+
+<tr>
+  <th colspan="5">
+    主たる問題(c00)
+  </th>
+  <td colspan="27">
+    <div style = "float:right; vertical-align:bottom; padding:5px">
+      <%= link_to_function image_tag("edit.gif", :border=>0), visual_effect(:appear, "shutaru_mondai") %>    
+    </div>    
+    <div id="shutaru_mondai">
+      <%= render(:partial => "aux", :object => @shien_keikaku.shutaru_mondai) %>
+    </div>    
+  </td>
+</tr>
+
+<tr>
+  <th colspan="9">
+    本人の意向(c01)
+  </th>
+  <td colspan="23">
+    <div style = "float:right; vertical-align:bottom; padding:5px">
+      <%= link_to_function image_tag("edit.gif", :border=>0), visual_effect(:appear, "honnin_ikou") %>    
+    </div>    
+    <div id="honnin_ikou">
+      <%= render(:partial => "aux", :object => @shien_keikaku.honnin_ikou) %>
+    </div>    
+  </td>
+</tr>
+<tr>
+  <th colspan="9">保護者の意向</th>
+  <td colspan="23">
+    <div style = "float:right; vertical-align:bottom; padding:5px">  
+    <%= link_to_function image_tag("edit.gif", :border=>0), visual_effect(:appear, "hogosha_ikou") %>
+    </div>                            
+    <div id="hogosha_ikou">
+      <%= render(:partial => "aux", :object => @shien_keikaku.hogosha_ikou) %>
+    </div>
+  </td>
+</tr>
+<tr>
+  <th colspan="9">市町村・学校・保育所・職場などの意見</th>
+  <td colspan="23">
+    <div style = "float:right; vertical-align:bottom; padding:5px">
+    <%= link_to_function image_tag("edit.gif", :border=>0), visual_effect(:appear, "school_iken") %>      
+    </div>  
+    <div id="school_iken">
+      <%= render(:partial => "aux", :object => @shien_keikaku.school_iken) %>
+    </div>
+
+  </td>
+</tr>
+<tr>
+  <th colspan="9">児童相談所との協議内容</th>
+  <td colspan="23">
+    <div style = "float:right; vertical-align:bottom; padding:5px">
+    <%= link_to_function image_tag("edit.gif", :border=>0), visual_effect(:appear, "jidou_sodan_kyogi") %>      
+    </div>   
+    <div id="jidou_sodan_kyogi">
+      <%= render(:partial => "aux", :object => @shien_keikaku.jidou_sodan_kyogi) %>
+    </div>                     
+　</td>
+</tr>
+<tr>
+  <td colspan="32">
+    <div style = "float:right; vertical-align:bottom; padding:5px">
+      <%= link_to_function image_tag("edit.gif", :border=>0), visual_effect(:appear, "shien_hoshin") %>     
+    </div>   
+    【支援方針】
+    <div ID="shien_hoshin">
+      <%= @shien_keikaku.shien_hoshin %>
+    </div>  
+  </td>
+</tr>
+<!--
+----------------------------------------------------------------------------------------------------------------
+-->
+
+<tr>
+  <td colspan="32">第○回　支援計画の策定及び評価　次期検討時期：</td>
+</tr>
+
+
+
+<% choki_01 = "長期計画-01" %>
+<% choki_02 = "長期計画-02" %>
+<% choki_03 = "長期計画-03" %>
+<% choki_04 = "長期計画-04" %>
+<tr>
+  <td colspan="32" style="background-color:#DEFFDE; padding:1px">
+    <span style="float:right; font-weight:normal">  
+      <%= link_to_function image_tag ("maximize.gif", :border=>0) ,visual_effect(:appear, "choki_01") %>
+      <%= link_to_function image_tag ("minimize.gif", :border=>0) ,visual_effect(:fade,   "choki_01") %>
+    </span>
+  子ども本人  
+  </td>
+</tr>
+<tr ID="choki_01" style="display:none;">
+  <td colspan="32"> 
+    <%= render(:partial => "tanki_part", 
+               :object  =>  @tanki_shien_mokuhyos, 
+               :locals  =>  { :target => "choki_kodomo", :cat => "cat-01" , :label => "子ども本人",             :choki => choki_01}) %>
+  </td>
+</tr>
+
+<tr>
+  <td colspan="32" style="background-color:#DEFFDE; padding:1px">
+    <span style="float:right; font-weight:normal">
+      <%= link_to_function image_tag ("maximize.gif", :border=>0) ,visual_effect(:appear, "choki_02") %>
+      <%= link_to_function image_tag ("minimize.gif", :border=>0) ,visual_effect(:fade,   "choki_02") %>
+    </span>
+    家庭（養育者・家族）
+  </td>
+</tr>
+<tr ID="choki_02" style="display:none;">  
+  <td colspan="32">  
+    <%= render(:partial => "tanki_part", 
+               :object  =>  @tanki_shien_mokuhyos, 
+               :locals  =>  { :target => "choki_katei",  :cat => "cat-02" , :label => "家庭（養育者・家族）",   :choki => choki_02}) %>           
+  </td>
+</tr>
+
+<tr>
+  <td colspan="32" style="background-color:#DEFFDE; padding:1px">
+    <span style="float:right; font-weight:normal">
+      <%= link_to_function image_tag ("maximize.gif", :border=>0) ,visual_effect(:appear, "choki_03") %>
+      <%= link_to_function image_tag ("minimize.gif", :border=>0) ,visual_effect(:fade,   "choki_03") %>
+    </span>
+    地域（保育所・学校等）
+  </td>
+</tr>
+<tr ID="choki_03" style="display:none;"> 
+  <td colspan="32"> 
+    <%= render(:partial => "tanki_part", 
+           :object  =>  @tanki_shien_mokuhyos, 
+           :locals  =>  { :target => "choki_chiiki", :cat => "cat-03" , :label => "地域（保育所・学校等）", :choki => choki_03}) %>
+  </td>
+</tr>
+
+<tr>
+  <td colspan="32" style="background-color:#DEFFDE; padding:1px">
+    <span style="float:right; font-weight:normal">  
+      <%= link_to_function image_tag ("maximize.gif", :border=>0) ,visual_effect(:appear, "choki_04") %>
+      <%= link_to_function image_tag ("minimize.gif", :border=>0) ,visual_effect(:fade,   "choki_04") %>
+    </span>
+    総合
+  </td>
+</tr>
+<tr ID="choki_04" style="display:none;">   
+  <td colspan="32"> 
+    <%= render(:partial => "tanki_part", 
+           :object  =>  @tanki_shien_mokuhyos, 
+           :locals  =>  { :target => "choki_sogo",   :cat => "cat-04" , :label => "総合",                   :choki => choki_04}) %>
+  </td>
+</tr> 
+</TABLE>           

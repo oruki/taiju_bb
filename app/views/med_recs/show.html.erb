@@ -1,0 +1,83 @@
+<TABLE ID="menu2" CLASS="part"> 
+<tr>
+  <th colspan=32 style="text-align:center;"><h2>健康医療記録</h2></th>
+</tr>
+<tr>
+  <td colspan=32 style="text-align:right">
+    <%= link_to '編集する', edit_med_rec_path(@daicho) %> |
+    <%= link_to '一覧表示', med_recs_path %>
+  </td>
+</tr>
+
+<tr>
+  <% 32.times do %>
+    <td></td>
+  <% end %>
+</tr>
+<tr>
+  <td colspan="3">No.</td>
+  <td colspan="26"style="text-align:center; font-size:16px">病  児  日  誌</td>
+  <td colspan="3">施設名</td>
+</tr>
+<tr>
+  <td colspan="3">児童名</td>
+  <td colspan="13"><%=h @med_rec.boy.name %></td>
+  <td colspan="3">日付</td>
+  <td colspan="13"><%=h @med_rec.date %></td>
+</tr>
+<tr>
+  <td colspan="3">症状</td>
+  <td colspan="13"><%=h @med_rec.symptom %></td>
+  <td colspan="3">快癒（状況）</td>
+  <td colspan="13"><%=h @med_rec.condition %></td>
+</tr>
+<tr>
+  <td colspan="3">医療機関</td>
+  <td colspan="13"><%=h @med_rec.med_inst.name %></td>
+  <td colspan="3">指示・処方</td>
+  <td colspan="13"><%=h @med_rec.temperature %></td>
+</tr>
+<tr>
+  <td colspan="3">健康保険</td>
+  <td colspan="13"><%=h @med_rec.insulance %></td>
+  <td colspan="3">備　考</td>
+  <td colspan="13"><%=h @med_rec.misc %></td>
+</tr>
+<tr>
+  <td colspan="11">容態１日目</td>
+  <td colspan="11">容態２日目</td>
+  <td colspan="10">容態３日目</td>
+</tr>
+<tr>
+  <td colspan="11" height="150px"><%=h @med_rec.condition %></td>
+  <td colspan="11"><%=h @med_rec.condition %></td>
+  <td colspan="10"><%=h @med_rec.condition %></td>
+</tr>
+<tr>
+  <td colspan="11">体温１日目</td>
+  <td colspan="11">体温２日目</td>
+  <td colspan="10">体温３日目</td>
+</tr>
+<tr>
+  <td colspan="11" height="150px"><%=h @med_rec.temperature %></td>
+  <td colspan="11"><%=h @med_rec.temperature %></td>
+  <td colspan="10"><%=h @med_rec.temperature %></td>
+</tr>
+</table>
+
+<%= link_to 'Edit', edit_med_rec_path(@daicho) %> |
+<%= link_to 'Back', med_recs_path %>
+
+<!-- 以下は将来のチェック用に保管する　-->
+
+<% # for column in MedRec.content_columns %>
+<% for column in MedRec.columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @med_rec.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', edit_med_rec_path(@med_rec) %> |
+<%= link_to 'Back', med_recs_path %>
+
+---------------

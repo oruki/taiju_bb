@@ -1,0 +1,46 @@
+<table ID="menu2" CLASS="part">
+  <tr>
+    <% 32.times do %>
+      <td></td>
+    <% end %>
+  </tr>
+  <tr>
+    <th colspan=8>支援上の課題</th>
+    <th colspan=8>支援目標</th>
+    <th colspan=8>支援内容・方法</th>
+    <th colspan=8>評価・期日</th>    
+  </tr>
+
+<% for tanki_shien_mokuhyo in tanki_shien_mokuhyos %>
+ <tr>
+    <td colspan=8>  
+
+      <%=h tanki_shien_mokuhyo.code %><br>
+      <%=h tanki_shien_mokuhyo.kadai %><br>
+    </td>
+    <td colspan=8>
+      <%=h tanki_shien_mokuhyo.mokuhyo %><br>
+    </td>
+    <td colspan=8>
+      <%=h tanki_shien_mokuhyo.naiyou %><br>
+    </td>
+    <td colspan=7>
+      <%=h tanki_shien_mokuhyo.hyoka %><br>
+    
+    </td>
+    <td colspan=1>
+      <%= link_to image_tag("edit.gif", :border=>0), edit_tanki_shien_mokuhyo_path(tanki_shien_mokuhyo) %>
+    </td>
+  </tr>
+  
+<!-- 枠線の色（上・右・下・左） -->
+  <tr>
+    <td colspan=32 style="border-width: 1px; border-style: solid; border-color: #efefef #efefef #8f8f0f #efefef;">
+      氏名：<%=h tanki_shien_mokuhyo.shien_keikaku.boy.name %>｜  
+      分類：<%=h tanki_shien_mokuhyo.cat %>｜        
+      作成日：<%=h tanki_shien_mokuhyo.date %>｜      
+      ID：<%=h tanki_shien_mokuhyo.id %>
+    </td>
+  </tr>
+<% end %>
+</table>

@@ -1,0 +1,11 @@
+page.replace_html("stay_out_recs",
+  :partial => "shared/stay_out_recs",
+  :object => @stay_out_recs
+)
+
+page["stay_out_recs"].visual_effect :highlight,
+                                  :startcolor => "#ff9900",
+                                  :endcolor   => "#ffff99"
+
+#THIS code is fully OK
+#troules come from routing

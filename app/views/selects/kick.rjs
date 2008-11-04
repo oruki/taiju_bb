@@ -1,0 +1,11 @@
+page.replace_html("school_recs",
+  :partial => "shared/school_recs",
+  :object => @school_recs
+)
+
+page["school_recs"].visual_effect :highlight,
+                                  :startcolor => "#ff9900",
+                                  :endcolor   => "#ffff99"
+
+#THIS code is fully OK
+#troules come from routing

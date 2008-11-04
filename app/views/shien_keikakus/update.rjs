@@ -1,0 +1,5 @@
+page.replace_html(@attr, :partial => "aux", :object => @attrval )
+page.replace_html("box", :partial => "aux_for_empty_box")
+page[@attr].visual_effect :highlight,
+                                  :startcolor => "#ff9900",
+                                  :endcolor   => "#ffff99"

@@ -1,0 +1,10 @@
+page.replace_html("accounts",
+#javaftemplate to partially replace
+  :partial => "shared/accounts",
+  :object => @accounts
+)
+
+#specify which part of the page should be hilitened
+page["accounts"].visual_effect :highlight,
+                                  :startcolor => "#ff9900",
+                                  :endcolor   => "#ffff99"

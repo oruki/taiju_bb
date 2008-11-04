@@ -1,0 +1,15 @@
+<table ID="menu2" CLASS="part">
+<tr>
+  <td style="text-align:center; background-color:#eeeeaa; color:#777755; ">
+    <h2>保護者（新規登録）</h2>
+  </td>
+</tr>
+<tr>
+  <td style="text-align:right; ">
+    <%= link_to '一覧表示', guardians_path %>
+  </td>
+</tr>
+</table>
+
+<%= render(:partial => "shared/guardian",
+             :object => @guardian) %>

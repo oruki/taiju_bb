@@ -1,0 +1,23 @@
+<p>
+  <b>Boy:</b>
+  <%=h @account.boy_id %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%=h @account.amount %>
+</p>
+
+<p>
+  <b>Desc:</b>
+  <%=h @account.desc %>
+</p>
+
+<p>
+  <b>Misc:</b>
+  <%=h @account.misc %>
+</p>
+
+
+<%= link_to 'Edit', edit_account_path(@account) %> |
+<%= link_to 'Back', accounts_path %>

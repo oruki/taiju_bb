@@ -1,0 +1,70 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>児童台帳（新規登録）</td>
+  </tr>  
+</TABLE>
+
+<%= error_messages_for :daicho %>
+<% a= Boy.find(:all).map{|k| [k.name, k.id]} %>
+
+<% form_for(@daicho) do |f| %>
+<TABLE ID="menu2" CLASS="part">
+<tr>
+  <td colspan= 32 style = "text-align:right; ">
+    <%= link_to '一覧表示', daichos_path %>
+  </td>
+</tr>
+<tr>
+  <% 32.times do |i| %>
+    <td></td>
+  <% end %>
+</tr>
+  <tr>
+    <th colspan=12>入所日</th>
+    <td colspan=20><%= f.date_select(:day_ent,{:include_blank=>true}) %></td>
+  </tr>
+  <tr>
+    <th colspan=12>退所日</th>
+    <td colspan=20><%= f.date_select(:day_ext,{:include_blank=>true}) %></td>
+  </tr>
+ <tr>
+    <th colspan=12>入所前住所</th>
+    <td colspan=20><%= f.text_field :add_prev %></td>
+  </tr>
+  <tr>
+    <th colspan=12>本籍</th>
+    <td colspan=20><%= f.text_field :add_perm %></td>
+  </tr>
+
+  <tr>
+    <th colspan=12>児童氏名：</th>
+    <td colspan=20><%= f.select(:boy_id, a,{:include_blank => true}) %>
+  </tr>
+
+  <tr>
+    <th colspan=12>生育暦及び社会環境</th>
+    <td colspan=20><%= f.text_area :desc1, :rows => 3, :cols =>50 %>
+  </tr>
+
+  <tr>
+    <th colspan=12>判定内容</th>
+    <td colspan=20><%= f.text_area :desc2, :rows => 3, :cols =>50 %></td>
+  </tr>
+
+  <tr>
+    <th colspan=12>入所を必要とした問題事項</th>
+    <td colspan=20><%= f.text_area :desc3, :rows => 3, :cols =>50 %></td>
+  </tr>
+
+  <tr>
+    <th colspan=12>備　考</th>
+    <td colspan=20><%= f.text_area :misc, :rows => 3, :cols =>50 %></td>
+  </tr>
+
+  <tr>
+    <th colspan=12>登録／更新</th>
+    <td colspan=20><%= f.submit "登録／更新" %></td>
+  </tr>
+<% end %>
+
+</TABLE>

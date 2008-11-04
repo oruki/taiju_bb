@@ -1,0 +1,36 @@
+<h1 title="ﾌﾟﾛｸﾞﾗﾑのﾊﾞｸﾞ報告やﾒﾓを記入してください">Listing admins</h1>
+<!-- grep can find this iguana -->
+<table ID="menu2" class="fix">
+  <tr>
+    <% 32.times do %>
+    <td></td>  
+    <% end %>
+  </tr>  
+  <tr>
+    <th colspan=2>Date</th>  
+    <th colspan=4>Title</th>
+    <th colspan=5>Cat</th>
+    <th colspan=5>Pos</th>
+    <th colspan=10>Cont</th>
+    <th colspan=6>Reporter</th>
+  </tr>
+
+<% for admin in @admins %>
+  <tr>
+    <td colspan=2 style="font-size:9px"><%=h admin.created_at.strftime("%m-%d") %></td>
+    <td colspan=4 style="font-size:9px"><%=h admin.title %></td>
+    <td colspan=5 style="font-size:9px"><%=h admin.cat %></td>
+    <td colspan=5 style="font-size:9px"><%=h admin.pos %></td>
+    <td colspan=10 style="font-size:10px"><%=h admin.cont %></td>
+    <td colspan=3 style="font-size:10px"><%=h admin.reporter %></td>
+
+    <td><%= link_to image_tag("show.gif", :border=>0), admin %></td>
+    <td><%= link_to image_tag("edit.gif", :border=>0), edit_admin_path(admin) %></td>
+    <td><%= link_to image_tag("delete.gif", :border=>0), admin, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New admin', new_admin_path %>

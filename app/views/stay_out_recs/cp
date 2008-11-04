@@ -1,0 +1,71 @@
+<h1>Editing stay_out_rec</h1>
+
+<%= error_messages_for :stay_out_rec %>
+
+<% form_for(@stay_out_rec) do |f| %>
+  <p>
+    <b>boy</b><br />
+    <%= f.text_field :boy_id %>
+  </p>
+
+  <p>
+    <b>gurdian</b><br />
+    <%= f.text_field :guardian_id %>
+  </p>
+
+  <p>
+    <b>place</b><br />
+    <%= f.text_field :place %>
+  </p>
+
+
+  <p>
+    <b>cat</b><br />
+    <%= f.text_field :case_category %>
+  </p>
+
+
+  <p>
+    <b>apAddr</b><br />
+    <%= f.text_field :app_address %>
+  </p>
+
+  <p>
+    <b>apName</b><br />
+    <%= f.text_field :app_name %>
+  </p>
+
+  <p>
+    <b>rcName</b><br />
+    <%= f.text_field :rcv_name %>
+  </p>
+
+
+  <p>
+    <b>conf</b><br />
+    <%= f.text_field :confirmation %>
+  </p>
+
+  <p>
+    <b>date</b><br />
+    <%= f.text_field :date %>
+  </p>
+
+  <p>
+    <b>apDate</b><br />
+    <%= f.text_field :app_date %>
+  </p>
+
+  <p>
+    <b>rcDate</b><br />
+    <%= f.text_field :rcv_date %>
+  </p>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @stay_out_rec %> |
+<%= link_to 'Back', stay_out_recs_path %>
+

@@ -1,0 +1,35 @@
+#日本
+case session[:kk]
+  when 'shidou'
+    page.replace_html("selector", :partial => "shared/shidou",        :object => @shidou_recs)
+    page.replace_html :recnbr, "ﾚｺｰﾄﾞ件数：#{@shidou_recs.size}件"
+    page.replace_html :session_info, "ｾｯｼｮﾝ情報：jj:#{session[:jj]}|yy:#{session[:yy]}|mm:#{session[:mm]}|kk:#{session[:kk]}"
+  when 'school'
+    page.replace_html("selector", :partial => "shared/school_recs",   :object => @school_recs)
+    page.replace_html :recnbr, "ﾚｺｰﾄﾞ件数：#{@school_recs.size}件"
+    page.replace_html :session_info, "ｾｯｼｮﾝ情報：jj:#{session[:jj]}|yy:#{session[:yy]}|mm:#{session[:mm]}|kk:#{session[:kk]}"    
+  when 'med'
+    page.replace_html("selector", :partial => "shared/med_recs",      :object => @med_recs)
+    page.replace_html :recnbr, "ﾚｺｰﾄﾞ件数：#{@med_recs.size}件"
+    page.replace_html :session_info, "ｾｯｼｮﾝ情報：jj:#{session[:jj]}|yy:#{session[:yy]}|mm:#{session[:mm]}|kk:#{session[:kk]}" 
+  when 'stay_out'
+    page.replace_html("selector", :partial => "shared/stay_out_recs", :object => @stay_out_recs)
+    page.replace_html :recnbr, "ﾚｺｰﾄﾞ件数：#{@stay_out_recs.size}件"
+    page.replace_html :session_info, "ｾｯｼｮﾝ情報：jj:#{session[:jj]}|yy:#{session[:yy]}|mm:#{session[:mm]}|kk:#{session[:kk]}"
+  else
+    page.replace_html("selector", :partial => "shared/shidou",        :object => @shidou_recs)
+    page.replace_html :recnbr, "ﾚｺｰﾄﾞ件数：#{@shidou_recs_with_boys.size}件"
+    page.replace_html :session_info, "ｾｯｼｮﾝ情報：jj:#{session[:jj]}|yy:#{session[:yy]}|mm:#{session[:mm]}|kk:#{session[:kk]}"    
+end
+
+page[:selector].visual_effect :highlight,
+                                  :startcolor => "#ff9900",
+                                  :endcolor   => "#ffff99"
+                                  
+page[:session_info].visual_effect :highlight,
+                                  :startcolor => "#ff9900",
+                                  :endcolor   => "#ffff99"
+                                  
+page[:recnbr].visual_effect :highlight,
+                                  :startcolor => "#ff9900",
+                                  :endcolor   => "#ffff99"

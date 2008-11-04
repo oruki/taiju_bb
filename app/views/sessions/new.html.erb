@@ -1,0 +1,20 @@
+<!--
+ログイン画面（2008.05.02/安井）
+-->
+
+<% form_tag session_path do -%>
+<p><label for="login">ログイン</label><br/>
+<%= text_field_tag 'login' %></p>
+
+<p><label for="password">パスワード</label><br/>
+<%= password_field_tag 'password' %></p>
+
+<!-- Uncomment this if you want this functionality
+<p><label for="remember_me">Remember me:</label>
+<%= check_box_tag 'remember_me' %></p>
+-->
+
+<p><%= submit_tag 'Log in' %></p>
+<% end -%>
+<hr>
+<%= link_to 'ユーザーの新規登録', :action => "new",  :controller => "users" %>

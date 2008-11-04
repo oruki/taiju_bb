@@ -1,0 +1,61 @@
+<div ID="school_recs">
+
+<table ID="menu2" CLASS="part">
+<tr>
+  <% 32.times do |i| %>
+    <td></td>
+  <% end %>
+</tr>
+
+<tr>
+  <th colspan=4>日付/ｽﾀｯﾌ</th>
+  <th colspan=4>児童名</th>
+  <th colspan=3>分類</th>
+  <th colspan=7>学校へ</th>
+  <th colspan=7>学校から</th>
+  <th colspan=7>備考</th>
+</tr>
+
+<% for @school_rec in school_recs %>
+<tr>
+  <td colspan=4>
+    <%=h @school_rec.date %><br>
+    <%= link_to_remote (@school_rec.staff.name, :url =>{:controller => :selects,
+                                                                       :action => "kick",
+                                                                       :id => @school_rec,
+                                                                       :staff => @school_rec.staff}) %>
+  </td>
+  <td colspan=4>
+    <%= link_to_remote (@school_rec.boy.name,   :url =>{:controller => :selects,
+                                                                       :action => "kick",
+                                                                       :id => @school_rec,
+                                                                       :boy => @school_rec.boy}) %>
+  </td>
+  <td colspan=3><%=h @school_rec.status %></td>
+<!-- next 2 lines added on 2008-07-26 -->
+  <td colspan=7>
+    <%#= in_place_text_area :school_rec, :message_to, :rows=>1, :cols=>18 %>
+    <%= @school_rec.message_to %>
+  </td>
+  <td colspan=7>
+    <%#= in_place_text_area :school_rec, :message_from, :rows=>1, :cols=>18 %>
+    <%= @school_rec.message_from %>
+  </td>
+  <td colspan=5><%=h @school_rec.misc %></td>
+  
+  <td colspan=1>
+    <% if @school_rec.staff == current_user.staff %>
+      <%= link_to image_tag("edit.gif", :border=>0), edit_school_rec_path(@school_rec) %>
+    <% end %>  
+  </td>
+  <td colspan=1>
+    <% if @school_rec.staff == current_user.staff %>
+      <%= link_to image_tag("delete.gif", :border=>0), @school_rec, :confirm => '本当に削除してよいですか?', :method => :delete %>
+    <% end %> 
+  </td>
+</tr>
+<% end %>
+
+</table>
+
+</div>

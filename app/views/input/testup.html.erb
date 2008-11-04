@@ -1,0 +1,17 @@
+<%= error_messages_for :shien_keikaku %>
+
+ <% form_for  @shien_keikaku, :url => {:controller => "input" ,:action => "update", :id => @shien_keikaku} do |f| %>
+
+<table>
+
+  <tr>
+    <td><b>C01</b>Ｃ０１を入力ください（input/testup）</td>
+    <td><%= f.text_field :c01 %></td>
+  </tr>
+
+  <tr>
+    <td><%= f.submit "変更" %></td>
+  </tr>
+
+</table>
+<% end %>

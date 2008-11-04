@@ -1,0 +1,110 @@
+class MedRecsController < ApplicationController
+# added 2008.06.10 added
+before_filter :login_required
+#----------------------------------------------------------------------INDEX
+  # GET /med_recs
+  # GET /med_recs.xml
+  def index
+    @med_recs = MedRec.find(:all, :order => "date Desc")
+
+#2008-08-08 年月により抽出するラジオボタンを追加
+
+mm = params[:month].to_i if params[:month]
+
+if params[:year]
+yy = params[:year].to_i
+else
+yy = Date.today.year
+end
+
+if params[:year] and params[:month]
+@med_recs = @med_recs.find_all{ |k| k.date.month == mm }
+else
+@med_recs = MedRec.find(:all, :order => "date DESC")
+end
+
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @med_recs }
+    end
+  end
+#----------------------------------------------------------------------SHOW
+  # GET /med_recs/1
+  # GET /med_recs/1.xml
+  def show
+    @med_rec = MedRec.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @med_rec }
+    end
+  end
+
+  # GET /med_recs/new
+  # GET /med_recs/new.xml
+  def new
+    @med_rec = MedRec.new
+  #ADDED
+    @med_recs = MedRec.find(:all, :order => "date Desc")
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @med_rec }
+    end
+  end
+#----------------------------------------------------------------------EDIT
+  # GET /med_recs/1/edit
+  def edit
+    @med_rec = MedRec.find(params[:id])
+  #ADDED
+    @med_recs = MedRec.find(:all, :order => "date Desc")
+
+  end
+#----------------------------------------------------------------------CREATE
+  # POST /med_recs
+  # POST /med_recs.xml
+  def create
+    @med_rec = MedRec.new(params[:med_rec])
+
+    respond_to do |format|
+      if @med_rec.save
+        flash[:notice] = 'MedRec was successfully created.'
+        format.html { redirect_to(@med_rec) }
+        format.xml  { render :xml => @med_rec, :status => :created, :location => @med_rec }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @med_rec.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+#----------------------------------------------------------------------UPDATE
+  # PUT /med_recs/1
+  # PUT /med_recs/1.xml
+  def update
+    @med_rec = MedRec.find(params[:id])
+
+    respond_to do |format|
+      if @med_rec.update_attributes(params[:med_rec])
+        flash[:notice] = 'MedRec was successfully updated.'
+        format.html { redirect_to(@med_rec) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @med_rec.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /med_recs/1
+  # DELETE /med_recs/1.xml
+  def destroy
+    @med_rec = MedRec.find(params[:id])
+    @med_rec.destroy
+
+    respond_to do |format|
+      format.html { redirect_to(med_recs_url) }
+      format.xml  { head :ok }
+    end
+  end
+end

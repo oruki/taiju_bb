@@ -1,0 +1,185 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>児童台帳</td>
+  </tr>  
+</TABLE>
+
+<TABLE ID="menu2" CLASS="part">
+<tr>
+  <td colspan= 32 style = "text-align:right; ">
+    <% form_tag({:action => :show, :id => @daicho},{:method=>:get}) do %>
+        <%= select_tag "fruits", options_for_select("apple"=>1, "orange"=>2, "pear"=>3, "grape"=>4) %>
+        <%= select_tag "boy_id", options_for_select(@options_for_boy) %>
+        <%= submit_tag '選択する' %>
+    <% end %>
+  </td>
+</tr>
+
+<tr>
+  <td colspan= 32 style = "text-align:right; ">
+    <%= link_to '編集する', edit_daicho_path(@daicho) %>&nbsp;|&nbsp; <%= link_to '一覧表示', daichos_path %>
+  </td>
+</tr>
+<tr>
+  <% 31.times do |i| %>
+    <td></td>
+  <% end %>
+  <td onmouseover="this.style.background='red';this.style.cursor='pointer'"
+      onmouseout="this.style.background='white';" onclick="alert('bang')"></td>
+</tr>
+
+<tr>
+  <td colspan="7"><a href="http://yasui-archi.com">No.<%=@daicho.id %></a></td>
+  <td colspan="15">児童台帳</td>
+  <td colspan="10">施設名</td>
+</tr>
+<tr>
+  <th colspan="5">フリガナ</th>
+  <td colspan="11"><%=h @daicho.boy.kana_name %></td>
+  <th colspan="6">措置機関</th>
+  <td colspan="10"><%=h @daicho.sochi %></td>
+</tr>
+<tr>
+  <th colspan="5">氏　名</th>
+  <td colspan="11"><%=h @daicho.boy.name %></td>
+  <th colspan="6">措置理由</th>
+  <td colspan="10"><%=h @daicho.sochi %></td>
+</tr>
+<tr>
+  <th colspan="5">入所前住所</th>
+  <td colspan="11"><%=h @daicho.add_prev %></td>
+  <th colspan="6">生年月日</th>
+  <td colspan="10"><%=h @daicho.boy.birthdate %></td>
+</tr>
+<tr>
+  <th colspan="5">本籍</th>
+  <td colspan="11"><%=h @daicho.add_perm %></td>
+  <th colspan="6">入所日</th>
+  <td colspan="10"><%=h @daicho.day_ent %></td>
+</tr>
+<tr>
+  <th colspan="5">出生地</th>
+  <td colspan="11">@boy.add_born</td>
+  <th colspan="6">退所日</th>
+  <td colspan="10"><%=h @daicho.day_ext %></td>
+</tr>
+<!--
+学校の選択@daicho.boy.edu_insts（複数）の中から小学校、中学校、高等学校に相当するものを抜き出す必要あり
+@daicho.boy.edu_insts.select{|i| i.cat == "小学校"} 
+@jido_edu_rels = JidoEduRel.find(:all).select {|i| i.edu_inst.cat == params[:edu_inst_cat]} 
+-->
+
+<tr>
+  <th colspan="1" rowspan=3>学<br>校</th>
+  <th colspan="4">小学校</th>
+  <td colspan="9">
+    <%#=h @daicho.boy.edu_insts[0].name if @daicho.boy.edu_insts[0].cat =="小学校" %>
+    <%=h @daicho.boy.edu_insts.select{|i| i.cat == "小学校"}[0].name %>
+  </td>
+  <th colspan="2">担任</th>
+  <td colspan="4"></td>
+  <th colspan="2">備考</th>
+  <td colspan="10"><%=h @daicho.misc %></td>
+</tr>
+<tr>
+  <th colspan="4">中学校</th>
+  <td colspan="9">
+    <%=h @daicho.boy.edu_insts[0].name if @daicho.boy.edu_insts[0].cat =="中学校" %>
+  </td>
+  <th colspan="2">担任</th>
+  <td colspan="4"></td>
+  <th colspan="2">備考</th>
+  <td colspan="10"></td>
+</tr>
+<tr>
+  <th colspan="4">高等学校</th>
+  <td colspan="9"><%=h @daicho.boy.edu_insts[0].name if @daicho.boy.edu_insts[0].cat =="高等学校" %></td>
+  <th colspan="2">担任</th>
+  <td colspan="4"></td>
+  <th colspan="2">備考</th>
+  <td colspan="10"></td>
+</tr>
+
+<!-- partial will be used
+<tr>
+  <td colspan="5" rowspan="6">家族<br>状況</td>
+  <td colspan="4" rowspan="2">保護者</td>
+  <td colspan="6">氏名</td>
+  <td colspan="2">年齢</td>
+  <td colspan="2">続柄</td>
+  <td colspan="2">健否</td>
+  <td colspan="6">職業収入</td>
+  <td colspan="5">その他</td>
+</tr>
+<tr>
+  <td colspan="6"><%=h @daicho.boy.guardians[0].name %></td>
+  <td colspan="2"><%=h @daicho.boy.guardians[0].birth_date.age %></td>
+  <td colspan="2">c</td>
+  <td colspan="2"><%=h @daicho.boy.guardians[0].cond_health %></td>
+  <td colspan="6"><%=h @daicho.boy.guardians[0].occupation %></td>
+  <td colspan="5"><%=h @daicho.boy.guardians[0].cond_income %></td>
+</tr>
+<tr>
+  <td colspan="4">同胞</td>
+  <td colspan="6">a</td>
+  <td colspan="2">b</td>
+  <td colspan="2">c</td>
+  <td colspan="2">d</td>
+  <td colspan="6">e</td>
+  <td colspan="5">f</td>
+</tr>
+<tr>
+  <td colspan="4">同胞</td>
+  <td colspan="6">a</td>
+  <td colspan="2">b</td>
+  <td colspan="2">c</td>
+  <td colspan="2">d</td>
+  <td colspan="6">e</td>
+  <td colspan="5">f</td>
+</tr>
+<tr>
+  <td colspan="4">その他</td>
+  <td colspan="6">a</td>
+  <td colspan="2">b</td>
+  <td colspan="2">c</td>
+  <td colspan="2">d</td>
+  <td colspan="6">e</td>
+  <td colspan="5">f</td>
+</tr>
+<tr>
+  <td colspan="4">縁故者</td>
+  <td colspan="6">a</td>
+  <td colspan="2">b</td>
+  <td colspan="2">c</td>
+  <td colspan="2">d</td>
+  <td colspan="6">e</td>
+  <td colspan="5">f</td>
+</tr>
+-->
+
+<tr>
+  <th colspan="5">家族<br>状況</th>
+  <td colspan="27">
+    <%= render(:partial => "shared/guardians",
+           :object => @guardians,
+           :locals => { :cont => 'daichos', :act => 'show' }) %>
+  </td>
+</tr>
+
+<tr>
+  <th colspan="5">生育歴および<br>社会環境</th>
+  <td colspan="27" align="center"><%=h @daicho.desc1 %></td>
+</tr>
+<tr>
+  <th colspan="5">判定内容<br></th>
+  <td colspan="27" align="center"><%=h @daicho.desc2 %></td>
+</tr>
+<tr>
+  <th colspan="5">入所を必要と<br>した問題事項</th>
+  <td colspan="27" align="center"><%=h @daicho.desc3 %></td>
+</tr>
+<tr>
+  <th colspan="5">備 考<br></th>
+  <td colspan="27" align="center"><%=h @daicho.misc %></td>
+</tr>
+</table>

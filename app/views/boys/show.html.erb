@@ -1,0 +1,40 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td> 児童（表示）</td>
+  </tr>  
+</TABLE>
+
+<table ID="menu2" CLASS="part">
+<tr>
+  <td colspan=32 style="text-align:right; ">
+    <span style="margin-right:20px">レコード数：<%= @n %>件</span>
+    <%= link_to '新規登録', new_boy_path %>
+  </td>
+</tr>
+<tr>
+  <% 32.times do %>
+    <td></td>
+  <% end %>
+</tr>
+<tr>
+  <th colspan=10>児童名:</th>
+  <td colspan=22><%=h @boy.name %></td>
+</tr>
+
+<tr>
+  <th colspan=10>生年月日:</th>
+  <td colspan=22><%= h @boy.birthdate %></td>
+</tr>
+
+<tr>
+  <th colspan=10>年齢:</th>
+  <td colspan=22><%= h @boy.birthdate.age if @boy.birthdate %></td>
+</tr>
+
+<tr>
+  <th colspan=10>性　別:</th>
+  <td colspan=22><%= h @boy.sex %></td>
+</tr>
+</table>
+<%= link_to 'Edit', edit_boy_path(@boy) %> |
+<%= link_to 'Back', boys_path %>

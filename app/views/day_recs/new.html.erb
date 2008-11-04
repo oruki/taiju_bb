@@ -1,0 +1,21 @@
+<%= javascript_include_tag:defaults %>
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>業務記録（新規登録）</td>
+  </tr>  
+</TABLE>
+
+<TABLE ID="menu2" CLASS="part"
+<tr>
+  <td style="text-align:right;">
+    <%= link_to '一覧表示', day_recs_path %>
+  </td>
+</tr>
+</TABLE>
+
+<%= render (:partial => 'shared/day_rec', 
+            :object => @day_rec,
+            :locals => {:cont => "day_recs", :act => "new"}) %>
+<%#= render (:partial => 'shared/day_recs', 
+            :object => @day_recs,
+            :locals => {:cont => "day_recs", :act => "new"}) %>

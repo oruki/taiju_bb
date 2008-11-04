@@ -1,0 +1,33 @@
+<% form_for(thegrouprec) do |f| %>
+  <%= f.error_messages %>
+
+  <tr>
+    <% 11.times do %>
+      <td></td>
+    <% end %>
+  </tr>
+
+  <tr>
+    <td colspan=11><%= f.date_select :hizuke %></td>
+  </tr>
+
+  <tr>
+    <td colspan=3>記録<br>ｸﾞﾙｰﾌﾟ:<%= f.select(:group_id, @gp) %></td>
+    <td colspan=8><%= f.text_area :desc, :rows => 2, :cols =>17 %></td>
+  </tr>
+
+  <tr>
+    <td colspan=3>備考</td>
+    <td colspan=8><%= f.text_area :misc, :rows => 2, :cols =>17 %></td>
+  </tr>
+
+  <tr>
+    <td colspan=3>伺い</td>
+    <td colspan=8><%= f.text_area :query, :rows => 2, :cols =>17 %></td>
+  </tr>
+
+  <tr>
+    <td colspan=11><%= f.submit "登録／更新" %></td>
+  </tr> 
+
+<% end %>

@@ -1,0 +1,2 @@
+module MedInstsHelper
+end

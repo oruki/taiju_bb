@@ -1,0 +1,90 @@
+<%= error_messages_for :med_rec %>
+<% form_for(med_rec) do |f| %>
+
+<table ID="menu2" CLASS="part">
+  <tr>
+  <% 32.times do %>
+    <td></td>
+  <% end %>
+  </tr>
+  <tr>
+    <th colspan=12>日付</th>
+    <td colspan=20>
+      <%#= calendar_date_select :med_rec, :date %>
+      <%= f.date_select(:date,{ :include_blank => true, 
+                                :use_month_numbers => true,
+                                :start_year => Date.today.years_ago(3).year, 
+                                :end_year   => Date.today.year})  %>      
+    </td>
+  </tr>
+  <tr>
+    <th colspan=12>児 童</th>
+    <td colspan=20>
+      <%= @boys = Boy.find(:all, :order => "id").map {|u| [u.name, u.id] }
+          f.select(:boy_id, @boys, {:include_blank => true}) %>
+    </td>
+  </tr>
+  <tr>
+    <th colspan=12>指導員</th>
+    <td colspan=20>
+      <%= @staffs = Staff.find(:all, :order => "id").map {|u| [u.name, u.id] }
+          f.select(:staff_id, @staffs, {:include_blank => true}) %>
+    </td>
+  </tr>
+  <tr>
+    <th colspan=12>医療機関</th>
+    <td colspan=20>
+      <%= mi = MedInst.find(:all, :order => "id").map {|m| [m.name, m.id] }
+          f.select(:med_inst_id, mi, {:include_blank => true}) %>
+    </td>
+  </tr>
+  <tr>
+    <th colspan=12>医療保険</th>
+    <td colspan=20>
+      <%= f.text_field :insulance %>
+    </td>
+  </tr>
+  <tr>
+    <th colspan=12>症状</th>
+    <td colspan=20>
+      <%= f.select(:symptom,['風邪','インフルエンザ','下痢','腹痛','頭痛','喘息','その他'], {:include_blank => true}) %>
+    </td>
+  </tr>
+  <tr>
+    <th colspan=12>状況</th>
+    <td colspan=20>
+      <%= f.select(:status,['通院','入院','安静','観察','その他'], {:include_blank => true}) %>
+    </td>
+  </tr>
+  <tr>
+    <th colspan=12>体温</th>
+    <td colspan=20>
+      <%= f.text_field :temperature %>
+    </td>
+  </tr>
+  <tr>
+    <th colspan=12>診断処方</th>
+    <td colspan=20>
+      <%= f.text_area :condition, :rows =>1, :cols => 52 %>
+    </td>
+  </tr>
+  <tr>
+    <th colspan=12>状態</th>
+    <td colspan=20>
+      <%= f.text_area :condition, :rows =>1, :cols => 52 %>
+    </td>
+  </tr>
+  <tr>
+    <th colspan=12>備考</th>
+    <td colspan=20>
+      <%= f.text_area :misc, :rows =>1, :cols => 52 %>
+    </td>
+  </tr>
+  <tr>
+    <th colspan=12>登録／更新</th>
+    <td colspan=20 style="text-align:right">
+      <%= f.submit "登録／更新" %>
+    </td>
+  </tr>
+</table>
+<% end %>

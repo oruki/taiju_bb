@@ -1,0 +1,32 @@
+<h1>Editing admin</h1>
+
+<% form_for(@admin) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :cat %><br />
+    <%= f.text_field :cat, :size => "100"  %>
+  </p>
+  <p>
+    <%= f.label :pos %><br />
+    <%= f.text_field :pos, :size => "100"  %>
+  </p>
+  <p>
+    <%= f.label :cont %><br />
+    <%= f.text_area :cont, :rows => "3"  %>
+  </p>
+  <p>
+    <%= f.label :reporter %><br />
+    <%= f.text_field :reporter %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @admin %> |
+<%= link_to 'Back', admins_path %>

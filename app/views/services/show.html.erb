@@ -1,0 +1,46 @@
+<TABLE ID="menu2" CLASS="fix"> 
+
+<tr>
+  <th colspan=32><h2>出 勤 記 録</h2></th>
+</tr>
+  <td colspan=32 style="text-align:right">
+    <%= link_to 'Edit', edit_service_path(@service) %> |
+    <%= link_to 'Back', services_path %>
+  </td>
+</tr>
+
+<tr>
+  <% 32.times do %>
+    <td></td>
+  <% end %>
+</tr>
+
+<tr>
+ <th colspan=14>所属児童ﾘｽﾄ</th>
+ <th colspan=11>児童ｸﾞﾙｰﾌﾟ**<%= @bb %></th>
+ <th colspan=7>指導員</th>
+</tr>
+
+<tr>
+
+<!-- ■■所属児童_myjido■■ -->
+
+<!-- ■■児童ｸﾞﾙｰﾌﾟ■■ -->
+
+<!-- ■■指導員■■ -->
+
+<!-- ■■test■■ -->
+
+
+<tr>
+  <th colspan=4>ｽﾀｯﾌ</th>
+  <td colspan=9>
+    <%=@service.staff.name %>
+  </td>
+  <th colspan=4>開始時刻</th>
+  <td colspan=15>
+    <%= @service.service_on %>
+  </td>
+</tr>
+
+</TABLE>

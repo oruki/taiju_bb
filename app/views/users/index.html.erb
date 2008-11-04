@@ -1,0 +1,39 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>ユーザー（一覧）</td>
+  </tr>  
+</TABLE>
+
+<TABLE ID="menu2" CLASS="part">
+  <tr>
+    <td colspan=32 style="text-align:right">
+      <span style="margin-right:20px">レコード数：<%= @users.size %>件</span>
+      <%= link_to '新規登録', new_user_path %>
+    </td>
+  </tr>
+  <tr>
+    <% 31.times do |i| %>
+    <td></td>
+    <% end %>
+    <td onmouseover="this.style.background='red';this.style.cursor='pointer'"
+        onmouseout="this.style.background='white';" onclick="alert('bang')"></td>
+  </tr>
+  <tr>
+    <th colspan=4>ID</th>
+    <th colspan=4>login name</th>
+    <th colspan=7>e-mail</th>
+    <th colspan=17>password</th>
+  </tr>
+
+<% for user in @users %>
+  <tr>
+    <td colspan=4><%=h user.id %></td>
+    <td colspan=4><%=h user.login %></td>
+    <td colspan=7><%=h user.email %></td>
+    <td colspan=15><%=h user.crypted_password %></td>
+
+    <td><%= link_to image_tag("edit.gif", :border=>0), edit_user_path(user) %></td>
+    <td><%= link_to image_tag("delete.gif", :border=>0), user, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</TABLE>

@@ -1,0 +1,24 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>面会・外出・外泊　編集画面（編集）</td>
+  </tr>  
+</TABLE>
+
+<TABLE ID="menu2" CLASS="part">
+<tr>
+  <td style="text-align:right; ">
+    <%= link_to '新規登録', new_stay_out_rec_path %>|
+    <%= link_to '一 覧', stay_out_recs_path %>
+  </td>
+</tr>
+</TABLE>
+
+<!-- EDIT -->
+  <%= render(:partial => "shared/stay_out_rec", 
+             :object => @stay_out_rec) %>
+
+<!-- INDEX -->
+<div ID="StayOutRecaPart">
+  <%= render(:partial => "shared/stay_out_recs", 
+             :object => @stay_out_recs) %>
+</div>

@@ -1,0 +1,56 @@
+<TABLE ID="menu2" CLASS="part"> 
+<%= error_messages_for :rel %>
+
+<% b = Boy.find(:all).map{|i| [i.name, i.id] } %>
+<% s = Staff.find(:all).map{|i| [i.name, i.id] } %>
+  <tr>
+    <td colspan=32 style="text-align:right">
+      <%= link_to '一覧表示', rels_path %>
+    </td>
+  </tr>
+  <tr>
+  <% 32.times do %>
+    <td></td>
+  <% end %>
+</tr>
+<% form_for(@rel) do |f| %>
+  <tr>
+    <th colspan=10>児童</th>
+    <td colspan=22><%= f.select(:boy_id, b, {:include_blank => true}) %></td>    
+  </tr>
+
+  <tr>
+    <th colspan=10>ｽﾀｯﾌ</th>
+    <td colspan=22><%= f.select(:staff_id, s, {:include_blank => true}) %></td>    
+  </tr>
+
+  <tr>
+    <th colspan=10>関係</th>
+    <td colspan=22><%= f.text_field :relation %></td>
+  </tr>
+
+  <tr>
+    <th colspan=10>有効期限</th>
+    <td colspan=22>
+      <%= f.date_select(:date_expired,{:include_blank=>true,
+                                       :start_year=>1985, :end_year=>Date.today.year.to_i,
+                                       :use_month_numbers => true,
+                                       :minute_step =>15})  %> 
+    </td>
+  </tr>
+
+  <tr>
+    <th colspan=10>備考</th>
+    <td colspan=22><%= f.text_field :misc %></td>
+  </tr>
+
+  <tr>
+    <th colspan=10>登録/更新</th>
+    <td colspan=22>
+      <%= f.submit "登録/更新" %>
+      <%= link_to 'このレコードを削除する', @rel, :confirm => '本当に削除しますか?', :method => :delete %>          
+    </td>
+
+  </tr>
+<% end %>
+</TABLE>

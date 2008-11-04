@@ -1,0 +1,91 @@
+<TABLE ID="menu2" CLASS="part">
+<%= error_messages_for :staff %>
+<% form_for(@staff) do |f| %>
+<tr>
+  <% 32.times do %>
+    <td></td>
+  <% end %>
+</tr>
+<tr>
+  <th colspan=10>フリガナ</th>
+  <td colspan=22>
+    <%= f.text_field :kana_name %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>氏 名</th>
+  <td colspan=22>
+    <%= f.text_field :name %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>画 像</th>
+  <td colspan=22>
+    <%= f.file_field (:uploaded_image) %> <%#= image_tag(@staff.photo_url, :size => "24x24") %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>生年月日</th>
+  <td colspan=22>
+    <%= f.date_select (:birth_date,{:include_blank=>true,
+                                   :start_year=>1930, :end_year=>Date.today.year.to_i,
+                                   :use_month_numbers => true,
+                                   :minute_step =>15})  %>       
+  </td>
+</tr>
+<tr>
+  <th colspan=10>採用年月日</th>
+  <td colspan=22>
+    <%= f.date_select (:saiyobi,{:include_blank=>true,
+                                 :start_year=>1930, :end_year=>Date.today.year.to_i,
+                                 :use_month_numbers => true,
+                                 :minute_step =>15})  %> 
+  </td>
+</tr>
+<tr>
+  <th colspan=10>性 別</th>
+  <td colspan=22>
+    <%= f.select ( :sex, [['男',1],['女',2]], {:include_blank => true}) %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>現住所</th>
+  <td colspan=22>
+    <%= f.text_field :resd_add %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>本 籍</th>
+  <td colspan=22>
+    <%= f.text_field :resd_add %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>電 話</th>
+  <td colspan=22>
+    <%= f.text_field :tel %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>携帯電話</th>
+  <td colspan=22>
+    <%= f.text_field :tel_hp %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>ユーザーＩＤ</th>
+  <td colspan=22>
+    <%#= f.text_field :user_id %>
+    <%= @users = User.find(:all, :order => "id").map {|u| [u.login, u.id] }
+        f.select(:user_id, @users, {:include_blank => true}) %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>登録/更新</th>
+  <td colspan=22>
+    <%= f.submit "登録/更新" %>
+    <%= link_to 'このレコードを削除する', @staff, :confirm => '本当に削除しますか?', :method => :delete %> 
+  </td>
+</tr>
+<% end %>
+</TABLE>

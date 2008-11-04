@@ -1,0 +1,18 @@
+<p>
+  <b>Address:</b>
+  <%=h @add.address %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @add.name %>
+</p>
+
+<p>
+  <b>Misc:</b>
+  <%=h @add.misc %>
+</p>
+
+
+<%= link_to 'Edit', edit_add_path(@add) %> |
+<%= link_to 'Back', adds_path %>

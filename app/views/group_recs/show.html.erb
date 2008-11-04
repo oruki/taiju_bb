@@ -1,0 +1,18 @@
+<p>
+  <b>Hizuke:</b>
+  <%=h @group_rec.hizuke %>
+</p>
+
+<p>
+  <b>Desc:</b>
+  <%=h @group_rec.desc %>
+</p>
+
+<p>
+  <b>Misc:</b>
+  <%=h @group_rec.misc %>
+</p>
+
+
+<%= link_to 'Edit', edit_group_rec_path(@group_rec) %> |
+<%= link_to 'Back', group_recs_path %>

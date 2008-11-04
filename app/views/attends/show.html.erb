@@ -1,0 +1,153 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td><%= "指導員勤務記録（#{current_user.staff.name}）" %></td>
+  </tr>  
+</TABLE>  
+
+
+<TABLE ID="menu2" CLASS="part"> 
+<tr>
+  <% 32.times do %>
+    <td></td>
+  <% end %>
+</tr>
+<tr>
+  <td colspan=32 style="text-align:right">
+    <span style="margin-right:80px; font-size:14px; font-weight:bold; ">
+      <%= link_to image_tag ("arrow_back.gif", :border=>0), attend_path(@attends[@prev]) %>
+      <%=h @attend.time_start.strftime("%y年%m月%d日") %>
+      <%= link_to image_tag ("arrow_next.gif", :border=>0), attend_path(@attends[@next]) %>
+    </span>
+    <%= link_to '編集', edit_attend_path(@attend) %> |
+    <%= link_to '一覧', attends_path %>
+  </td>
+</tr>
+</TABLE>
+
+
+<TABLE ID="menu2" CLASS="part"> 
+<tr>
+  <% 32.times do %>
+    <td></td>
+  <% end %>
+</tr>
+
+<tr>
+ <th colspan=22>所属児童ﾘｽﾄ(担当児童<%= @attend.staff.boys.size %>人)</th>
+ <th colspan=10>指導員</th>
+</tr>
+<!-- ■1■所属児童_myjido■■ -->
+<tr>
+  <td colspan=22>  
+    <div CLASS="portal-175">
+      <%= render(:partial => "myjido", :object => @boysincharge5) %>
+    </div>
+  </td>
+
+
+<!-- ■2■指導員■■ -->
+  <td colspan=10>
+   <%= render(:partial => "staff") %>
+  </td>
+</tr>
+</TABLE>
+
+<div ID="xyz">
+</div>
+<!-- -------------------------------------------------------------------------------------■3■指導員の個人記録■■ --> 
+<TABLE ID="menu2" CLASS="part">
+<tr>
+  <% 32.times do %>
+    <td></td>
+  <% end %>
+</tr>
+<tr>
+  <th colspan=32>
+    <span style="float:right; font-weight:normal;">
+      <!-- 折畳み用のアイコン -->
+        <span ID="show_icon01">
+               <%= link_to_function image_tag ("maximize.gif", :border=>0) ,visual_effect(:appear, "staff_rec") %>
+               <%= link_to_function image_tag ("minimize.gif", :border=>0) ,visual_effect(:fade, "staff_rec") %>                        
+        </span>      
+        <span ID="hide_icon01" style="display:none;">
+        </span>
+    </span>
+    <%= "#{@attend.staff.name}の記録"%>
+  </th>
+</tr> 
+</TABLE>
+<div ID="staff_rec" style="display:none;">
+  <%= render(:partial => "diary") %>
+</div>
+<!-- -------------------------------------------------------------------------------------■3■児童ｸﾞﾙｰﾌﾟの記録■■ --> 
+<TABLE ID="menu2" CLASS="part">
+<tr>
+  <% 32.times do %>
+    <td></td>
+  <% end %>
+</tr>
+<tr>
+  <th colspan=32>
+    <span style="float:right; font-weight:normal;">
+      担当ｸﾞﾙｰﾌﾟ名：<%= @group_now.name if @group_now %> &nbsp;&nbsp;
+      <!-- 折畳み用のアイコン -->
+      controller.action_name is <%= controller.action_name %>
+        <span ID="show_icon01">
+               <%= link_to_function image_tag ("maximize.gif", :border=>0) ,visual_effect(:appear, "grp_rec") %>
+               <%= link_to_function image_tag ("minimize.gif", :border=>0) ,visual_effect(:fade, "grp_rec") %>                        
+        </span>      
+        <span ID="hide_icon01" style="display:none;">
+        </span>
+    </span>
+    ｸﾞﾙｰﾌﾟの記録
+  </th>
+</tr> 
+</TABLE>
+
+<div ID="grp_rec" style="display:none;">
+  <%= render(:partial => "show_group_recs")%>
+</div>
+
+<!-- -------------------------------------------------------------------------------------■4■児童の各記録について切替/選択パネル■■ --> 
+<TABLE ID="menu2" CLASS="part">
+<tr>
+  <% 32.times do %>
+    <td></td>
+  <% end %>
+</tr> 
+<tr>
+  <td colspan=32>
+  </td>
+</tr>
+<tr>
+  <th colspan=32>
+    <span style="float:right; font-weight:normal">
+    <span ID="session_info">
+      ｾｯｼｮﾝ情報：jj:<%=session[:jj]%>|yy:<%=session[:yy]%>|mm:<%=session[:mm]%>|kk:<%=session[:kk]%>|n1:<%=session[:n1]%>|n2:<%=session[:n2]%>      
+    </span>
+      <!-- 折畳み用のアイコン attends_controller/fold_recs fold_recs.rjs -->    
+        <span ID="show_icon02">
+               <%= link_to_function image_tag ("maximize.gif", :border=>0) ,visual_effect(:appear, "each_rec") %>
+               <%= link_to_function image_tag ("minimize.gif", :border=>0) ,visual_effect(:fade, "each_rec") %>                        
+              
+               <%#= link_to_remote image_tag ("/images/maximize.gif", :border=>0), :url => {:controller => "attends",
+                                                                             :action => "show_recs",
+                                                                             :id => @attend,
+                                                                             :mode => "show" } %></span>
+        <span ID="hide_icon02" style="display:none;">
+               <%= link_to_function image_tag ("maximize.gif", :border=>0) ,visual_effect(:appear, "each_rec", "show_icon02") %>
+               <%= link_to_function image_tag ("minimize.gif", :border=>0) ,visual_effect(:fade, "each_rec") %>         
+        </span>
+    </span>  
+    各記録
+  </th>
+</tr> 
+</TABLE>
+
+<div ID="each_rec" style="display:none;">
+  <%= render( :partial => "each_rec" ) %>
+</div>
+
+
+
+ 

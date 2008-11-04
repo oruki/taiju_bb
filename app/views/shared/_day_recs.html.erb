@@ -1,0 +1,30 @@
+<table ID="menu2" CLASS="part">
+  <tr>
+    <% 32.times do |i| %>
+      <td></td>
+    <% end %>
+  </tr>
+  <tr>
+    <th colspan=4>日付/天気</th>
+    <th colspan=17>出来事</th>
+    <th colspan=11>備　考</th>
+  </tr>
+
+<% for day_rec in @day_recs %>
+  <tr>
+    <td colspan=4>
+      <%=h day_rec.hizuke %><br>
+      <%=h day_rec.tenki %>
+    </td>
+    <td colspan=17>
+      <%=h day_rec.dekigoto %>
+    </td>
+    <td colspan=9>
+      <%=h day_rec.misc %>
+    </td>
+    <td colspan=1><%#= link_to 'S', day_rec %>
+                  <%= link_to image_tag("show.gif", :border=>0), day_rec %></td>
+    <td colspan=1 align="center"><%= link_to image_tag("edit.gif", :border=>0, :alt => "Edit Entry"), edit_day_rec_path(day_rec) %></td>
+  </tr>
+<% end %>
+</table>

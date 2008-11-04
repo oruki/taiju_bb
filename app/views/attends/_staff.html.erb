@@ -1,0 +1,40 @@
+<TABLE ID="menu2" CLASS="part" width="100%">
+<tr>
+  <td</td><td</td><td</td><td</td><td</td><td</td><td</td>
+</tr>
+<tr>
+  <td colspan=3>氏　　名</td>
+  <td colspan=4><%= @attend.staff.name %></td>
+</tr>
+<tr>
+  <td colspan=3>勤務区分</td>
+  <td colspan=4><%= @attend.misc %></td>
+</tr>
+<tr>
+  <td colspan=3>
+    勤務開始：<br>勤務終了：
+  </td>
+  <td colspan=4>
+    <%= @attend.time_start.strftime('%m.%d-%H:%M') %><br>
+    <%= @attend.time_end.strftime  ('%m.%d-%H:%M') %>
+  </td>
+</tr>
+<tr>
+  <td colspan=3>勤務時間</td>
+  <td colspan=4><%= @dif %>時間</td>
+</tr>
+<tr>
+  <td colspan=3>ﾕｰｻﾞｰID</td>
+  <td colspan=4><%= @attend.staff.user_id %></td>
+</tr>
+<tr>
+  <td colspan=3>ﾛｸﾞｲﾝ名</td>
+  <td colspan=4><%= @attend.staff.user.login if @attend.staff.user %></td>
+</tr>
+<tr>
+  <td colspan=7>
+    userID=<%= session[:user_id] %><br>
+    userLOGIN=<%= current_user.login if current_user.staff %><br>
+  </td>
+</tr>
+</TABLE>

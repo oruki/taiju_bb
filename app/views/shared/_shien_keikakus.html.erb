@@ -1,0 +1,84 @@
+
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>児童支援計画（新規登録）</td>
+  </tr>  
+</TABLE>
+<%= error_messages_for :shien_keikaku %>
+
+<% form_for(@shien_keikaku) do |f| %>
+<TABLE ID="menu2" CLASS="part">
+  <tr>
+    <% 32.times do %>
+    <td></td>
+    <% end %>
+  </tr>
+  <tr>
+    <th colspan=10>sakutei_bango</td>
+    <td colspan=22><%= f.text_field :sakutei_bango, :rows => 2, :cols => 56 %></td>
+  </tr>  
+  <tr>
+    <th colspan=10>jido_id</td>
+    <td colspan=6>
+      <% bb = Boy.find(:all, :order => "id").map {|u| [u.name, u.id] } %>
+      <%= f.select(:boy_id, bb, {:include_blank => true}) %>
+    </td>
+  </tr>
+    <tr>
+    <th colspan=10>staff_id</td>
+    <td colspan=6>
+      <% ss = Staff.find(:all, :order => "id").map {|u| [u.name, u.id] } %>
+      <%= f.select(:staff_id, ss, {:include_blank => true}) %>
+    </td>
+  </tr>
+  <tr>
+    <th colspan=10>shutaru_mondai</td>
+    <td colspan=22><%= f.text_area :shutaru_mondai, :rows => 2, :cols => 56 %></td>
+  </tr>
+  <tr>
+    <th colspan=10>honnin_ikou</b></td>
+    <td colspan=22><%= f.text_area :honnin_ikou, :rows => 2, :cols => 56 %></td>
+  </tr>
+  <tr>
+    <th colspan=10>hogosha_ikou</th>
+    <td colspan=22><%= f.text_area :hogosha_ikou, :rows => 2, :cols => 56 %></td>
+  </tr>
+  <tr>
+    <th colspan=10>school_iken</th>
+    <td colspan=22><%= f.text_area :school_iken, :rows => 2, :cols => 56 %></td>
+  </tr>
+  <tr>
+    <th colspan=10>jidou_sodan_kyogi</th>
+    <td colspan=22><%= f.text_area :jidou_sodan_kyogi, :rows => 2, :cols => 56 %></td>
+  </tr>
+  <tr>
+    <th colspan=10>shien_hoshin</th>
+    <td colspan=22><%= f.text_area :shien_hoshin, :rows => 2, :cols => 56 %></td>
+  </tr>
+  <tr>
+    <th colspan=10>choki_kodomo</th>
+    <td colspan=22><%= f.text_area :choki_kodomo, :rows => 2, :cols => 56 %></td>
+  </tr>
+  <tr>
+    <th colspan=10>choki_katei</th>
+    <td colspan=22><%= f.text_area :choki_katei, :rows => 2, :cols => 56 %></td>
+  </tr>
+  <tr>
+    <th colspan=10>choki_chiiki</th>
+    <td colspan=22><%= f.text_area :choki_chiiki, :rows => 2, :cols => 56 %></td>
+  </tr>
+  <tr>
+    <th colspan=10>choki_sogo</th>
+    <td colspan=22><%= f.text_area :choki_sogo, :rows => 2, :cols => 56 %></td>
+  </tr>
+
+  <tr>
+    <th colspan=10>登録/更新</th>
+    <td colspan=22><%= f.submit "登録/更新" %></td>
+  </tr>
+
+</table>
+<% end %>
+
+<%= link_to 'Show', @shien_keikaku %> |
+<%= link_to 'Back', shien_keikakus_path %>

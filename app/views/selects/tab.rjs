@@ -1,0 +1,4 @@
+    page.replace_html :tab, "&#65434;&#65402;&#65392;&#65412;&#65438;&#20214;&#25968;8&#20214;"
+page["tab"].visual_effect :highlight,
+                                  :startcolor => "#ff9900",
+                                  :endcolor   => "#ffff99"

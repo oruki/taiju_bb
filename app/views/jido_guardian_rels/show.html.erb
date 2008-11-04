@@ -1,0 +1,12 @@
+<h3>児童保護者関係</h3><hr>
+<% for column in JidoGuardianRel.columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @jido_guardian_rel.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', edit_jido_guardian_rel_path(@jido_guardian_rel) %> |
+<%= link_to 'Back', jido_guardian_rels_path %>
+
+<hr>
+

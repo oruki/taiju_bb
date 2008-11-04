@@ -1,0 +1,58 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>児童支援計画（一覧）</td>
+  </tr>  
+</TABLE>
+
+<TABLE ID="menu2" CLASS="part">
+  <tr>
+    <td colspan=32 style="text-align:right;">
+      ﾚｺｰﾄﾞ件数：<%= @shien_keikakus.size%>件
+      <%= link_to '新規登録', new_shien_keikaku_path %>
+    </td>
+  </tr>
+  <tr>
+    <% 32.times do %>
+      <td></td>
+    <% end %>
+  </tr>
+  <tr>
+    <th colspan=4>児童ID/氏名</th>
+    <th colspan=5>作成日/更新日</th>
+    <th colspan=5>備考欄</th>
+    <th colspan=4>記入欄：01</th>
+    <th colspan=4>記入欄：02</th>
+    <th colspan=4>記入欄：03</th>
+    <th colspan=6>記入欄：04</th>
+  </tr>
+<% a="height:80px; overflow:auto;" %>
+<% for shien_keikaku in @shien_keikakus %>
+  <tr>
+    <td colspan=4>
+      <div style="height:50px">
+        <%=h shien_keikaku.boy_id %><br>
+        <%=h shien_keikaku.boy.name %><br>
+        <%=h shien_keikaku.id %>
+      </div>
+    </td>
+    <td colspan=5>
+      <div style="height:30px; overflow:auto;">
+        <%=h shien_keikaku.created_at.to_date %><br>
+        <%=h shien_keikaku.updated_at.to_date %>
+      </div>
+    </td>
+    <td colspan=5>
+      <div style="height:30px; overflow:auto;">
+        <%=h shien_keikaku.misc %>
+      </div>
+    </td>
+    <td colspan=4><div style="height:30px; overflow:auto;"><%=h shien_keikaku.honnin_ikou %></div></td>
+    <td colspan=4><div style="height:30px; overflow:auto;"><%=h shien_keikaku.hogosha_ikou %></div></td>
+    <td colspan=4><div style="height:30px; overflow:auto;"><%=h shien_keikaku.school_iken %></div></td>
+    <td colspan=4><div style="height:30px; overflow:auto;"><%=h shien_keikaku.jidou_sodan_kyogi %></div></td>
+
+    <td><%= link_to image_tag("show.gif", :border=>0), shien_keikaku %></td>
+    <td><%= link_to image_tag("edit.gif", :border=>0), edit_shien_keikaku_path(shien_keikaku) %></td>
+  </tr>
+<% end %>
+</TABLE>

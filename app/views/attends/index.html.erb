@@ -1,0 +1,64 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>指導員勤務記録（一覧表示）</td>
+  </tr>  
+</TABLE>
+<%= render(:partial => "shared/header_com",
+           :locals => {:recs => @attends}) %>
+
+<TABLE ID="menu2" CLASS="part">
+  <tr>
+    <% 31.times do %>
+      <td></td>
+    <% end %>
+    <td onmouseover="this.style.background='red';this.style.cursor='pointer'"
+        onmouseout="this.style.background='white';" onclick="alert('bang')">
+    </td>
+  </tr>
+
+  <tr>
+    <th colspan=6>ｽﾀｯﾌID/氏名</th>
+    <th colspan=6>日　付</th>
+    <th colspan=9>出勤/退出時間</th>
+    <th colspan=4>勤務時間</th>
+    <th colspan=7>備　考</th>
+  </tr>
+
+
+<% for attend in @attends %>
+  <% if attend.time_end && attend.time_start then %>
+    <% dif= (attend.time_end - attend.time_start)/3600 %>
+  <% else %>
+    <% dif=0 %>
+  <% end %>
+
+  <tr>
+    <td colspan=6>
+      <%=h attend.staff_id %><br>
+      <%=h attend.staff.name if attend.staff %>
+    </td>
+    <td colspan=6>
+      <%#=h attend.time_start.to_date.strftime("%y年%m月%d日") if attend.time_start %>
+      
+      <%= link_to attend.time_start.to_date.strftime("%y年%m月%d日"), attend %>
+
+    </td>
+    <td colspan=9 style="color:#aa0000">
+      <%=h attend.time_start.strftime("%y年%m月%d日%H時%M分") if attend.time_start %><br>
+      <%=h attend.time_end.strftime("%y年%m月%d日%H時%M分") if attend.time_end %>      
+    </td>
+    <td colspan=4 align="center">
+      <%= dif %>&nbsp;  時間
+    </td>
+    <td colspan=5><%=h attend.misc %></td> 
+    <td colspan=1>
+      <%= link_to image_tag("show.gif", :border=>0), attend %>
+    </td>
+    <td colspan=1>
+      <%= link_to image_tag("edit.gif", :border=>0), edit_attend_path(attend) %>
+    </td>
+  </tr>
+
+<% end %>
+
+</table>

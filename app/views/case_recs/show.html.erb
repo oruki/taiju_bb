@@ -1,0 +1,49 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>児童ケース記録</td>
+  </tr>  
+</TABLE>
+
+<TABLE ID="menu2" CLASS="part">
+  <tr>
+    <td colspan=32 style="text-align:right; ">
+      <%= link_to '一覧表示', case_recs_path %>
+    </td>
+  </tr>
+  <tr>
+    <% 32.times do |i| %>
+      <td></td>
+    <% end %>
+  </tr>
+
+  <tr>
+    <td colspan=32>
+      <% form_tag({:action => :show, :id => @case_rec}, { :method=>:get}) do %>
+        <%= select_tag "fruits", options_for_select("apple"=>1, "orange"=>2, "pear"=>3, "grape"=>4) %>
+        <%= select_tag "boy_id", options_for_select(@options_for_boy) %>
+        <%= submit_tag '選択する' %>
+      <% end %>
+    </td>
+  </tr>
+  
+  <tr>
+    <td colspan=12><%=h @case_rec.boy_id %></td>
+    <td colspan=10 style="font-weight:bold;"><%=h @case_rec.boy.name %></td>
+    <td colspan=10><%=h @case_rec.boy.kana_name %></td>
+  </tr>
+
+  <tr>
+    <td colspan= 32 style="text-align:right; ">
+      <%= render(:partial => "shared/selector",
+                 :locals => {:recs => @shidou_recs}) %>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan=32>
+    <div ID = "selector"
+       <%#= render(:partial => "shared/case_shidou", :object=>@shidou_recs) %>
+    </div>
+    </td>
+  </tr>
+</TABLE>

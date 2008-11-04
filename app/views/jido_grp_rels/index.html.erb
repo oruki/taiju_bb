@@ -1,0 +1,52 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>児童ｸﾞﾙｰﾌﾟ関係（一覧）</td>
+  </tr>  
+</TABLE>
+
+<TABLE ID="menu2" CLASS="part">
+  <tr>
+    <td colspan=32 style="text-align:right; ">
+      <span style="margin-right:25px">レコード件数：<%= @jido_grp_rels.size %></span>
+      <%= link_to '新規登録', new_jido_grp_rel_path %>
+    </td>
+  </tr>
+  <tr>
+    <% 31.times do |i| %>
+    <td></td>
+    <% end %>
+    <td onmouseover="this.style.background='red';this.style.cursor='pointer'"
+        onmouseout="this.style.background='white';" onclick="alert('bang')"></td>
+  </tr>
+
+  <tr>
+    <th colspan=4>ﾘﾚｰｼｮﾝid</th>
+    <th colspan=5>児童id</th>
+    <th colspan=4>児童名</th>
+    <th colspan=3>年齢</th>
+    <th colspan=2>性別</th>
+    <th colspan=5>ｸﾞﾙｰﾌﾟid</th>
+    <th colspan=4>
+      <%= link_to "ｸﾞﾙｰﾌﾟ名", :action => "index", :sort => "grp" %>
+    </th>
+    <th colspan=5>ｸﾞﾙｰﾌﾟ分類</th>
+  </tr>
+<% for jgr in @jido_grp_rels %>
+  <tr>
+    <td colspan=4><%= jgr.id %></td>
+    <td colspan=5><%= jgr.boy_id %></td>
+    <td colspan=4><%= jgr.boy.name %></td>
+    <td colspan=3 style="text-align:center">
+      <%= jgr.boy.birthdate.age %>
+    </td>
+    <td colspan=2><%= %w{男 女}[jgr.boy.sex - 1] %></td>
+    
+    <td colspan=5><%= jgr.group_id %></td>
+    <td colspan=4><%= jgr.group.name %></td>
+    <td colspan=4><%= jgr.group.cat %></td>
+    <td><%= link_to image_tag("edit.gif", :border=>0), edit_jido_grp_rel_path(jgr) %></td>
+  </tr>
+<% end %>
+</table>
+
+<!-- nil objecct error リレーション定義ファイルの場合対応するマスターファイルとデータの過不足をチェックしないとエラーとなる　-->

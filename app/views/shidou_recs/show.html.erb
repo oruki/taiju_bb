@@ -1,0 +1,46 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>指導記録</td>
+  </tr>  
+</TABLE>
+
+<TABLE ID="menu2" CLASS="part"
+<tr>
+  <td style="text-align:right;">
+    <%= link_to '編集', edit_shidou_rec_path(@shidou_rec) %> |
+    <%= link_to '一覧表示', shidou_recs_path %>
+  </td>
+</tr>
+</TABLE>
+
+<TABLE ID="menu2" CLASS="part">
+<tr>
+  <% 32.times do %>
+    <td></td>
+  <% end %> 
+</tr>
+<tr>
+  <th colspan=12>日付</th>
+  <td colspan=20><%=h @shidou_rec.date %></td>
+</tr>
+
+<tr>
+  <th colspan=12>児童</th>
+    <td colspan=20><%=h @shidou_rec.boy.name %></td>
+</tr>
+
+<tr>
+  <th colspan=12>指導員</th>
+  <td colspan=20><%=h @shidou_rec.staff.name %></td>
+</tr>
+
+<tr>
+  <th colspan=12>カテゴリー</th>
+  <td colspan=20><%=h @shidou_rec.cat %></td>
+</tr>
+
+<tr>
+  <th colspan=12>指導内容</th>
+  <td colspan=20><%=h @shidou_rec.desc %></td>
+</tr>
+</TABLE>

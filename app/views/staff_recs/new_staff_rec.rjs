@@ -1,0 +1,4 @@
+page.replace_html("xyz","実権#{@staff_rec.naiyo}")
+page["xyz"].visual_effect :highlight,
+                                  :startcolor => "#ff9900",
+                                  :endcolor   => "#ffff99"

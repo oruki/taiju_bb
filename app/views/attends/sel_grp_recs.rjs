@@ -1,0 +1,11 @@
+#switch display for grp_recs  if you change @grp_recs_today in controller action simplify below
+case session[:grp]
+  when 'off'
+    page.replace_html("grp_recs_today", :partial => "grp_recs_off") #dammy partial with no contents
+  else
+    page.replace_html("grp_recs_today", :partial => "grp_recs_today",   :object => @grp_recs_today)
+end
+
+page[:grp_recs_today].visual_effect :highlight,
+                                  :startcolor => "#ff9900",
+                                  :endcolor   => "#ffff99"

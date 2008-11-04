@@ -1,0 +1,44 @@
+<h2>勤務記録を入力してください</h2>
+
+<TABLE ID="menu2" CLASS="part">
+<tr>
+  <th colspam=32 style="text-align:center">    
+    <h2>勤務記録</h2>
+  </th>
+</tr>
+<tr>
+  <td colspam=32 style="text-align:right">    
+    <%= link_to '一 覧', services_path %>
+  </td>
+</tr>
+</TABLE>
+
+<TABLE ID="menu2" CLASS="part">
+
+<%= error_messages_for :service %>
+<tr>
+  <% 32.times do %>
+    <td></td>
+  <% end %>
+</tr>
+
+<% form_for(@service) do |f| %>
+<tr>
+  <th colspan=6>スタッフ</th>
+  <td colspan=26><%= f.select(:staff_id, Staff.find(:all).map{|k| [k.name, k.id]}, {:include_blank=>true}) %></td>
+</tr>
+<tr>
+  <th colspan=6>出勤時間</th>
+  <td colspan=26>
+    <%= f.datetime_select :service_on, :use_month_numbers => true %>
+  </td>
+</tr>
+
+<tr>
+  <td colspan=32 style="text-align:right">    
+    <%= f.submit "新規登録" %>
+  </td>
+</tr>
+
+<% end %>
+</TABLE>

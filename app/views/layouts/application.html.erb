@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>bBoys: <%= controller.action_name %></title>
+  
+<!-- Added below -->
+  <%= stylesheet_link_tag 'table_a' %> 
+  <%= stylesheet_link_tag 'scaffold' %> 
+  <%= stylesheet_link_tag 'base' %>
+  <%= javascript_include_tag :defaults %>  
+
+
+<script type="text/javascript">
+  _translations = {
+    "OK": "OK",
+    "Now": "現在",
+    "Today": "今日" 
+  }
+  Date.weekdays = $w("日 月 火 水 木 金 土");
+  Date.months =   $w("1 2 3 4 5 6 7 8 9 10 11 12" );
+</script>
+
+<!-- IN_PLACE -->
+<%= stylesheet_link_tag 'in_place_styles' %>
+
+<!-- superfish menu use -->
+
+</head>
+
+<body>
+
+<div id=container>
+
+<!-- ■上のヘッダーボックス■ -->
+
+  <div id=header style="font-size:8pt">
+     <!-- <img src ="/images/bigtree.jpg" width="100%"><br> -->
+
+     <%= render(:partial => "shared/nav") %>
+  </div>
+
+
+<!-- ■左のメインボックス■ -->
+  <div id=left style="color: grey; font-size:8pt; z-index:0">
+     <p style="color: green;font-size:9pt"><%= flash[:notice] %></p>
+     <%= yield  %>
+  </div>
+
+<!-- ■右のサイドボックス■ -->
+  <div id=right style="padding:3px; color:grey; text-align:center; background-color: #FBFBF6; z-index:9">
+<!--
+■01■
+-->
+       <div style="border:solid 1px green; margin-top:18px; padding:5px; font-size:10px; ">
+       <% if current_user %> 
+         <% if current_user.staff %>
+           こんにちわ&nbsp; <b><%= current_user.login %></b>&nbsp; さん、<br>
+           あなたは&nbsp;<%= current_user.staff.name if current_user.staff %>&nbsp; さんですね<br>
+<!--  -->
+           <hr>
+           <% if current_user.staff.boys %>
+             <% k = current_user.staff.boys.map{|i| [i.name]} %>
+               あなたの担当児童は：<br>
+               <% for i in k %>
+                 <div style="text-align:left; float:right; border:solid 0px; width:45%;"><%= i %></div>
+               <% end %>
+           <% end %>
+         <% else %>
+           あなたはこのシステムのスタッフとして登録されていません。登録しますか？<br>
+         <% end %>
+       <% end %>
+<!--  -->
+       <hr style="clear: both">
+       <%= link_to 'ログアウト', logout_url %><br>
+       <%= link_to 'ホーム',:controller=>'welcome', :action=>'index' %>
+       </div>
+<!--
+■02■
+-->
+       <div style="border:solid 1px green; font-weight:bold;margin-top:18px; padding:5px">
+         <%= Time.now.strftime( "%Y年%m月%d日(%a)" ) %>
+       </div>
+<!--
+■03■
+-->
+<!--
+       <div style="border:solid 1px green; font-size:9pt;padding:10px; align:center; margin-top:18px"; padding:5px" >
+         <%#= calendar(:year => Time.now.year, :month => Time.now.month) %> 
+       </div>
+-->
+       <div>
+         <iframe src="http://www.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showTz=0&amp;height=280&amp;wkst=1&amp;hl=ja&amp;bgcolor=%23FFFFFF&amp;src=0fdcdme3f5q3ibra32jfag1qn4%40group.calendar.google.com&amp;color=%23B1365F&amp;src=hqdhniq504eeivg4hhk9lld3ag%40group.calendar.google.com&amp;color=%235229A3&amp;ctz=Asia%2FTokyo" 
+         style="font-size:8; border-width:0 " width="190" height="280" frameborder="0" scrolling="no"></iframe>
+       </div>  
+
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<p>
+  <b>Title:</b>
+  <%=h @admin.title %>
+</p>
+
+<p>
+  <b>Cat:</b>
+  <%=h @admin.cat %>
+</p>
+
+<p>
+  <b>Pos:</b>
+  <%=h @admin.pos %>
+</p>
+
+<p>
+  <b>Cont:</b>
+  <%=h @admin.cont %>
+</p>
+
+<p>
+  <b>Reporter:</b>
+  <%=h @admin.reporter %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_path(@admin) %> |
+<%= link_to 'Back', admins_path %>

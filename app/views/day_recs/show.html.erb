@@ -1,0 +1,94 @@
+<%= javascript_include_tag:defaults %>
+<LINK rel="stylesheet" type="text/css" href="/stylesheets/table_a.css">
+
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>業務記録(日誌)</td>
+  </tr>  
+</TABLE>
+
+<TABLE ID="menu2" CLASS="part">
+<tr>
+  <td colspan=32 style="text-align:right;">
+    <%= link_to '一覧表示', day_recs_path %>
+  </td>
+</tr>
+<tr>
+  <% 32.times do |i| %>
+    <td></td>
+  <% end %>
+</tr>
+<tr>
+  <th colspan=5>日付</td>
+  <th colspan=5>天気</td>
+  <th colspan=11>出来事</td>
+  <th colspan=11>備考</td>
+</tr>
+<tr>
+  <td colspan=5><%=h @day_rec.hizuke %></td>
+  <td colspan=5><%=h @day_rec.tenki %></td>
+  <td colspan=11><%=h @day_rec.dekigoto %></td>
+  <td colspan=11><%=h @day_rec.misc %></td>
+</tr>
+
+<!-- ■00■ｽｸﾛｰﾙﾃｽﾄ＋部分ﾃﾝﾌﾟﾚｰﾄ（shared/group_recs）■■ -->
+<tr><td colspan=32>■ｸﾞﾙｰﾌﾟ記録■</td></tr>
+<tr>
+ <td colspan=32>
+  <div CLASS="portal">
+    <%= render(:partial => "shared/group_recs",
+           :object => @group_recs,
+           :locals => { :cont => 'day_recs', :act => 'show' }) %>
+  </div>
+ </td>
+</tr>
+
+<!-- ■01■ｽｸﾛｰﾙﾃｽﾄ＋部分ﾃﾝﾌﾟﾚｰﾄ（shared/school_recs）■■ -->
+<tr><td colspan=32>■学校記録■</td></tr>
+<tr>
+ <td colspan=32>
+  <div CLASS="portal">
+    <%= render(:partial => "shared/school_recs",
+           :object => @school_recs,
+           :locals => { :cont => 'day_recs', :act => 'show' }) %>
+  </div>
+ </td>
+</tr>
+<!-- ■02■ｽｸﾛｰﾙﾃｽﾄ＋部分ﾃﾝﾌﾟﾚｰﾄ（shared/shidou）■■ -->
+<tr><td colspan=32>■指導記録■</td></tr>
+<tr>
+ <td colspan=32>
+  <div CLASS="portal">
+    <%= render(:partial => "shared/shidou",
+           :object => @shidou_recs,
+           :locals => { :cont => 'day_recs', :act => 'show' }) %>
+  </div>
+ </td>
+</tr>
+<!-- ■03■ｽｸﾛｰﾙﾃｽﾄ＋部分ﾃﾝﾌﾟﾚｰﾄ（shared/med_recs）■■ -->
+<tr><td colspan=32>■医療記録■</td></tr>
+<tr>
+ <td colspan=32>
+  <div CLASS="portal">
+    <%= render(:partial => "shared/med_recs",
+           :object => @med_recs,
+           :locals => { :cont => 'day_recs', :act => 'show' }) %>
+  </div>
+ </td>
+</tr>
+<!-- ■04■ｽｸﾛｰﾙﾃｽﾄ＋部分ﾃﾝﾌﾟﾚｰﾄ（shared/stay_out_recs）■■ -->
+<tr><td colspan=32>■外泊･外出記録■</td></tr>
+<tr>
+ <td colspan=32>
+  <div CLASS="portal">
+    <%= render(:partial => "shared/stay_out_recs",
+           :object => @stay_out_recs,
+           :locals => { :cont => 'day_recs', :act => 'show' }) %>
+  </div>
+ </td>
+</tr>
+
+</table>
+
+<%= link_to 'Edit', edit_day_rec_path(@day_rec) %> |
+<%= link_to 'Back', day_recs_path %>

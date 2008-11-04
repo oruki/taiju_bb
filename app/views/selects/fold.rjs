@@ -1,0 +1,5 @@
+page.replace_html("fold_group","")
+page.replace_html("fold_icon", :partial => "attends/unfold_icon")
+page["fold_group"].visual_effect :highlight,
+                                  :startcolor => "#ff9900",
+                                  :endcolor   => "#ffff99"

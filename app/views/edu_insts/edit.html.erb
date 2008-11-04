@@ -1,0 +1,71 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>教育機関（編集）</td>
+  </tr>  
+</TABLE>
+
+<TABLE ID="menu2" CLASS="part">
+<%= error_messages_for :edu_inst %>
+<tr>
+  <td colspan=32 style="text-align:right;">
+    <%= link_to '表 示', @edu_inst %> |
+    <%= link_to '一覧表示', edu_insts_path %>
+  </td>
+</tr>
+<% form_for(@edu_inst) do |f| %>
+<tr>
+  <% 32.times do %>
+    <td></td>
+  <% end %>
+</tr>
+<tr>
+  <th colspan=10>フリガナ</th>
+  <td colspan=22>
+    <%= f.text_field :kana_name %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>名　称</th>
+  <td colspan=22>
+    <%= f.text_field :name %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>分　類</th>
+  <td colspan=22>
+    <%= f.select (:cat,['保育園','幼稚園','小学校','中学校','高校','大学','専門学校','その他'],{:include_blank => true}) %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>郵便番号</th>
+  <td colspan=22>
+    <%= f.text_field :zip %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>住　所</th>
+  <td colspan=22>
+    <%= f.text_field :add %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>電話番号</th>
+  <td colspan=22>
+    <%= f.text_field :tel %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>ﾌｧｯｸｽ番号</th>
+  <td colspan=22>
+    <%= f.text_field :fax %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>登録／更新</th>
+  <td colspan=22>
+     <%= f.submit "登録／更新" %>
+     <%= link_to 'このレコードを削除する', @edu_inst, :confirm => '本当に削除しますか?', :method => :delete %> 
+  </td>
+</tr>
+<% end %>
+</TABLE>

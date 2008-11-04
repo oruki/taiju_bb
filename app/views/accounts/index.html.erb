@@ -1,0 +1,14 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>児童預金台帳（一覧表示）</td>
+  </tr>  
+</TABLE>
+<%= render(:partial => "shared/header_com",
+           :locals => {:recs => @accounts}) %>
+               
+<div id=''>
+  <div ID="tag">
+    <%= render(:partial => "shared/accounts",
+               :object => @accounts ) %>
+  </div>
+</div>

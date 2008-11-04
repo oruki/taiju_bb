@@ -1,0 +1,33 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td> 児童ケース記録（編集）</td>
+  </tr>  
+</TABLE>
+
+<TABLE ID="menu2" CLASS="part">
+  <tr>
+    <td colspan=32 style="text-align:right; ">
+      <%= link_to '一覧表示', case_recs_path %>
+    </td>
+  </tr>
+  <tr>
+    <% 32.times do %>
+    <td></td>
+    <% end %>
+<% form_for(@case_rec) do |f| %>
+<%= f.error_messages %>
+  <tr>
+    <th colspan=12>児童</th>
+    <td colspan=20><%= f.select(:boy_id, Boy.find(:all).map{|i|[i.name,i.id]}, {:include_blank => true} ) %></td>
+  </tr>
+  <tr>
+    <th colspan=12>備考</th>
+    <td colspan=20><%= f.text_field :misc %></td>
+  </tr>
+    <th colspan=12>登録／更新</th>
+    <td colspan=20><%= f.submit "登録／更新" %></td>
+  <tr>
+
+  </tr>
+<% end %>
+</TABLE>

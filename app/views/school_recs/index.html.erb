@@ -1,0 +1,12 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>学校記録（一覧）</td>
+  </tr>  
+</TABLE>
+<%= render(:partial => "shared/header_com",
+           :locals => {:recs => @school_recs}) %>
+
+<div ID="SchoolRecsPart">
+  <%= render(:partial => "shared/school_recs",
+             :object => @school_recs) %>
+</div>

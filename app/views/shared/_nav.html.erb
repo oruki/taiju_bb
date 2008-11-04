@@ -1,0 +1,144 @@
+<LINK rel="stylesheet" type="text/css" href="/stylesheets/table_a.css">
+
+<!--Links used to initiate the sub menus. Pass in the desired submenu index numbers (ie: 0, 1) -->
+
+<TABLE WIDTH="100%" ID="navi" class="fix" >
+
+<tr style="visibility:hidden;">
+  <% 32.times do |i| %>
+    <td style="line-height:3px"></td>
+  <% end %>
+</tr>
+<tr>
+  <td colspan=7></td>
+  <td colspan=3><a href="" onMouseover="showit(0)">台　帳</a></td>
+  <td colspan=3><a href="" onMouseover="showit(1)">記　録</a></td>
+  <td colspan=3><a href="" onMouseover="showit(2)">報告書</a></td>
+  <td colspan=3><a href="" onMouseover="showit(3)" style="color:#39f">ﾏｽﾀｰA</a></td>
+  <td colspan=3><a href="" onMouseover="showit(4)" style="color:#39f">ﾏｽﾀｰB</a></td>
+  <td colspan=3><a href="" onMouseover="showit(8)" style="color:#39f">管理</a></td>
+  <td colspan=3><a href="" onMouseover="showit(5)">ﾛｸﾞｲﾝ</a></td>
+  <td colspan=3><a href="" onMouseover="showit(9)">ﾛｸﾞｵﾌ</a></td>
+  <td colspan=1><a href="" onMouseover="showit(6)">？</a></td>  
+</tr>
+<tr>
+  <td colspan=32 align="center" style="line-height:12px; background-color:#FFFFFF; border:solid 1px white;">
+<!-- Edit the dimensions of the below, plus background color-->
+    <ilayer width="600px" height="18px" name="dep1" bgColor="red">
+      <layer name="dep2" width="600px" height="18px"></layer>
+    </ilayer>
+    <div id="describe" style="background-color:#FFFFFF;width:100%;height:18px" 
+      onMouseover="clear_delayhide()" 
+      onMouseout="resetit(event)">
+    </div>
+  </td>
+</tr>
+
+</table>
+
+<script language="JavaScript1.2">
+
+/*
+Tabs Menu (mouseover)- By Dynamic Drive
+For full source code and more DHTML scripts, visit http://www.dynamicdrive.com
+This credit MUST stay intact for use
+*/
+
+var submenu=new Array()
+
+//Set submenu contents. Expand as needed. For each content, make sure everything exists on ONE LINE. Otherwise, there will be JS errors.
+
+submenu[5]='<font size="2" ID="nobg">\
+<%= link_to 'サインアップ', { :controller => "users", :action => "new" } %>&nbsp;|&nbsp;\
+<%= link_to 'ログイン', { :controller => "session", :action => "new" } %>&nbsp;|&nbsp;\
+<%= link_to 'ポータル', { :controller => "welcome", :action => "index" } %> \
+</font>'
+submenu[6]='<font size="2" ID="nobg">\
+<%= link_to 'タイムカード', { :controller => "attends", :action => "show", :main =>"main"} %>&nbsp;|&nbsp;\
+<%= link_to '宿直記録', { :controller => "welcome", :action => "index" } %>\
+</font>'
+submenu[0]='<font size="2" ID="nobg">\
+<%= link_to '児童預金台帳', { :controller => "accounts", :action => "index" } %>&nbsp;|&nbsp;\
+<%= link_to '児童台帳', { :controller => "daichos", :action => "index" } %>&nbsp;|&nbsp;\
+<%= link_to '職員出勤台帳', { :controller => "attends", :action => "index" } %>&nbsp;|&nbsp;\
+<%= link_to 'ケース記録簿', { :controller => "case_recs", :action => "index" } %>\
+</font>'
+submenu[1]='<font size="2" ID="nobg">\
+<%= link_to '業務記録', { :controller => "day_recs", :action => "index" } %>&nbsp;|&nbsp;\
+<%= link_to 'ｸﾞﾙｰﾌﾟ記録', { :controller => "group_recs", :action => "index" } %>&nbsp;|&nbsp;\
+<%= link_to '指導記録', { :controller => "shidou_recs", :action => "index" } %>&nbsp;|&nbsp;\
+<%= link_to '学校記録', { :controller => "school_recs", :action => "index" } %>&nbsp;|&nbsp;\
+<%= link_to '医療記録', { :controller => "med_recs", :action => "index" } %>&nbsp;|&nbsp;\
+<%= link_to '面接外泊記録', { :controller => "stay_out_recs", :action => "index" } %>\
+</font>'
+submenu[2]='<font size="2" ID="nobg">\
+<%= link_to '支援計画', { :controller => "shien_keikakus", :action => "index" } %>&nbsp;|&nbsp;\
+<%= link_to '支援目標', { :controller => "tanki_shien_mokuhyos", :action => "index" } %>&nbsp;|&nbsp;\
+<%= link_to '児童構成表', { :controller => "reports", :action => "kosei" } %>&nbsp;|&nbsp;\
+<%= link_to '入退所状況', { :controller => "attends", :action => "index" } %>&nbsp;|&nbsp;\
+<%= link_to '児童成長記録', { :controller => "attends", :action => "index" } %>&nbsp;|&nbsp;\
+</font>'
+submenu[3]='<font size="2" ID="nobg">\
+<%= link_to '児童', { :controller => "boys", :action => "index" } %>&nbsp;|&nbsp;\
+<%= link_to '指導員', { :controller => "staffs", :action => "index" } %>&nbsp;|&nbsp;\
+<%= link_to 'グループ', { :controller => "groups", :action => "index" } %>&nbsp;|&nbsp;\
+<%= link_to '保護者', { :controller => "guardians", :action => "index" } %>&nbsp;|&nbsp;\
+<%= link_to '教育機関', { :controller => "edu_insts", :action => "index" } %>&nbsp;|&nbsp;\
+<%= link_to '医療機関', { :controller => "med_insts", :action => "index" } %>\
+</font>'
+submenu[4]='<font size="2" ID="nobg">\
+<%= link_to '児童指導員関係', { :controller => "rels", :action => "index" } %>&nbsp;|&nbsp;\
+<%= link_to '児童ｸﾞﾙｰﾌﾟ関係', { :controller => "jido_grp_rels", :action => "index" } %>&nbsp;|&nbsp;\
+<%= link_to '児童保護者関係', { :controller => "jido_guardian_rels", :action => "index" } %>&nbsp;|&nbsp;\
+<%= link_to '児童教育機関関係', { :controller => "jido_edu_rels", :action => "index" } %>&nbsp;|&nbsp;\
+<%= link_to 'ユーザー', { :controller => "users", :action => "index" } %>\
+</font>'
+submenu[8]='<font size="2" ID="nobg">\
+<%= link_to '管理', admins_path %>\
+</font>'
+submenu[9]='<font size="2" ID="nobg">\
+<%= link_to 'ログアウト', logout_url %>\
+</font>'
+
+
+//Set delay before submenu disappears after mouse moves out of it (in milliseconds)
+//ORIGINALLY SET TO 500 CHANGED TO 700 BY ME 0629
+//ORIGINALLY SET TO 500 CHANGED TO 4000 BY ME 0822
+//var delay_hide=500
+var delay_hide=4000
+
+/////No need to edit beyond here
+
+var menuobj=document.getElementById? document.getElementById("describe") : document.all? document.all.describe : document.layers? document.dep1.document.dep2 : ""
+
+function showit(which){
+clear_delayhide()
+thecontent=(which==-1)? "" : submenu[which]
+if (document.getElementById||document.all)
+menuobj.innerHTML=thecontent
+else if (document.layers){
+menuobj.document.write(thecontent)
+menuobj.document.close()
+}
+}
+
+function resetit(e){
+if (document.all&&!menuobj.contains(e.toElement))
+delayhide=setTimeout("showit(-1)",delay_hide)
+else if (document.getElementById&&e.currentTarget!= e.relatedTarget&& !contains_ns6(e.currentTarget, e.relatedTarget))
+delayhide=setTimeout("showit(-1)",delay_hide)
+}
+
+function clear_delayhide(){
+if (window.delayhide)
+clearTimeout(delayhide)
+}
+
+function contains_ns6(a, b) {
+while (b.parentNode)
+if ((b = b.parentNode) == a)
+return true;
+return false;
+}
+
+</script>

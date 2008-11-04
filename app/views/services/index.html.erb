@@ -1,0 +1,84 @@
+<TABLE ID="menu2" CLASS="part">
+  <tr>
+    <th colspan=32 style="text-align:center; background-color:#eeeeaa; color:#777755; ">
+      <h2>スタッフ勤務記録</h2>
+    </th>
+  </tr>
+
+  <tr>
+    <td colspan=32 style="text-align:right; ">
+      <%= link_to '新規登録', new_service_path %>
+    </td>
+  </tr>
+
+  <tr>
+    <% 32.times do %>
+      <td></td>
+    <% end %>
+  </tr>
+</TABLE>
+
+#2008-08-08　ラジオボタンの実験用
+<div style="border:solid 1px">
+
+パラメータの値(コントローラーで勝手に作成)：<%= params[:katte] %><br>
+パラメータの値(abc)：<%= params[:abc] %><br>
+パラメータの値(arg)：<%= params[:arg] %><br>
+
+<% form_tag ({:action => :index}, {:method => :get}) do %>
+ <%= text_field_tag(:arg, params[:arg], :size => 5) %>
+ <%= radio_button_tag("abc", "hoge", checked = (params[:abc]=="hoge") )  %>hoge
+ <%= radio_button_tag("abc", "huga", checked = (params[:abc]=="huga") )  %>huga
+ <%= submit_tag "選択" %>
+<% end %>
+
+</div>
+
+
+<TABLE ID="menu2" CLASS="part">
+  <tr>
+    <th colspan=4>ｽﾀｯﾌID/氏名</th>
+    <th colspan=5>日　付</th>
+    <th colspan=8>出勤/退出時間</th>
+    <th colspan=3>勤務時間</th>
+    <th colspan=6>備　考</th>
+  </tr>
+
+
+<% for service in @services %>
+  <tr>
+    <td colspan=4>
+      <%=h service.staff_id %><br>
+      <%=h service.staff.name if service.staff %>
+    </td>
+    <td colspan=5>
+      <%=h service.service_on.to_date.strftime("%y年%m月%d日") if service.service_on %>
+    </td>
+    <td colspan=8 style="color:#aa0000">
+      <%=h service.service_on ("%y年%m月%d日%H時%M分") if service.service_on %><br>
+      <%=h service.service_off("%y年%m月%d日%H時%M分") if service.service_off %>  
+    </td>
+    <td colspan=3 align="center">
+      <%= ((service.service_off - service.service_on)/3600).to_i if service.service_off %>&nbsp;  時間
+
+    </td>
+    </td>
+    <td colspan=6>
+      <%=h service.misc %>
+    </td> 
+
+    <td colspan=1>
+      <%= link_to 'S', service%>
+    </td>
+    <td colspan=1>
+      <%= link_to 'E', edit_service_path(service) %>
+    </td>
+    <td colspan=1>
+      <%= link_to 'D', service, :confirm => 'Are you sure?', :method => :delete %>
+    </td>
+
+
+  </tr> 
+<% end %>
+
+</table>

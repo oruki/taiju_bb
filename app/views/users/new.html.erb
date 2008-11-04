@@ -1,0 +1,21 @@
+<!--
+新規ユーザー登録の画面（2008.05.02/安井）
+map.signup '/signup', :controller => 'users', :action => 'new'
+-->
+
+<%= error_messages_for :user %>
+<% form_for :user, :url => users_path do |f| -%>
+<p><label for="login">ログイン</label><br/>
+<%= f.text_field :login %></p>
+
+<p><label for="email">Ｅメール</label><br/>
+<%= f.text_field :email %></p>
+
+<p><label for="password">パスワード</label><br/>
+<%= f.password_field :password %></p>
+
+<p><label for="confirm Password">パスワード（確認）</label><br/>
+<%= f.password_field :password_confirmation %></p>
+
+<p><%= submit_tag 'Sign up' %></p>
+<% end -%>

@@ -1,0 +1,12 @@
+<h1>Editing jido</h1>
+
+<%= error_messages_for :jido %>
+
+<% form_for(@jido) do |f| %>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @jido %> |
+<%= link_to 'Back', jidos_path %>

@@ -1,0 +1,125 @@
+<h2>児童台帳</h2><hr>
+<%= link_to '編集する', edit_daicho_path(@daicho) %> |
+<%= link_to '一覧表示', daichos_path %>
+<TABLE ID="menu2 CLASS="part"> 
+<tr style="border:solid 1px;">
+  <% 32.times do %>
+   <td></td>
+  <% end %>
+</tr>
+<tr>
+  <td colspan="7">No.<%=@daicho.id %></td>
+  <td colspan="15">児童台帳</td>
+  <td colspan="10">施設名</td>
+</tr>
+<tr>
+  <td colspan="3">氏名</td>
+  <td colspan="9"><%=h @daicho.boy.name %></td>
+  <td colspan="1">生年月日</td>
+  <td colspan="9"><%=h @daicho.boy.birthdate %></td>
+  <td colspan="1">措置</td>
+  <td colspan="9"><%=h @daicho.sochi %></td>
+</tr>
+<tr>
+  <td colspan="3" rowspan="2">入所前住所</td>
+  <td colspan="14" rowspan="2"><%=h @daicho.add_prev %></td>
+  <td colspan="3">本籍</td>
+  <td colspan="12"><%=h @daicho.add_perm %></td>
+</tr>
+<tr>
+
+  <td colspan="3">出生地</td>
+  <td colspan="12">@boy.name</td>
+</tr>
+<tr>
+  <td colspan="3">学校</td>
+  <td colspan="14"><%=h @daicho.boy.edu_insts[0].name %></td>
+  <td>担任</td>
+  <td colspan="8">@boy.name</td>
+  <td>備考</td>
+  <td colspan="5">@boy.name</td>
+</tr>
+<tr>
+  <td colspan="2" rowspan="5">家族状況</td>
+  <td colspan="1" rowspan="2">保護者</td>
+  <td colspan="8">氏名</td>
+  <td colspan="2">年齢</td>
+  <td colspan="2">続柄</td>
+  <td colspan="2">健否</td>
+  <td colspan="8">職業収入</td>
+  <td colspan="7">その他</td>
+</tr>
+<tr>
+  <td colspan="8"><%=h @daicho.boy.guardians[0].name %></td>
+  <td colspan="2"><%=h @daicho.boy.guardians[0].birth_date.age %></td>
+  <td colspan="2">c</td>
+  <td colspan="2"><%=h @daicho.boy.guardians[0].cond_health %></td>
+  <td colspan="8"><%=h @daicho.boy.guardians[0].occupation %></td>
+  <td colspan="7"><%=h @daicho.boy.guardians[0].cond_income %></td>
+</tr>
+<tr>
+  <td colspan="1">同胞</td>
+  <td colspan="8">a</td>
+  <td colspan="2">b</td>
+  <td colspan="2">c</td>
+  <td colspan="2">d</td>
+  <td colspan="8">e</td>
+  <td colspan="7">f</td>
+</tr>
+<tr>
+  <td colspan="1">同胞</td>
+  <td colspan="8">a</td>
+  <td colspan="2">b</td>
+  <td colspan="2">c</td>
+  <td colspan="2">d</td>
+  <td colspan="8">e</td>
+  <td colspan="7">f</td>
+</tr>
+<tr>
+  <td colspan="1">その他</td>
+  <td colspan="8">a</td>
+  <td colspan="2">b</td>
+  <td colspan="2">c</td>
+  <td colspan="2">d</td>
+  <td colspan="8">e</td>
+  <td colspan="7">f</td>
+</tr>
+<tr>
+  <td colspan="3">縁故者</td>
+  <td colspan="8">a</td>
+  <td colspan="2">b</td>
+  <td colspan="2">c</td>
+  <td colspan="2">d</td>
+  <td colspan="8">e</td>
+  <td colspan="7">f</td>
+</tr>
+<tr>
+  <td colspan="3">社会環境</td>
+  <td colspan="29" align="center"><%=h @daicho.desc1 %></td>
+</tr>
+<tr>
+  <td colspan="3">判定内容</td>
+  <td colspan="29" align="center"><%=h @daicho.desc2 %></td>
+</tr>
+<tr>
+  <td colspan="3">問題事項</td>
+  <td colspan="29" align="center"><%=h @daicho.desc3 %></td>
+</tr>
+<tr>
+  <td colspan="3">備 考</td>
+  <td colspan="29" align="center"><%=h @daicho.misc %></td>
+</tr>
+</table>
+<p>
+  <b>Desc1:</b>
+  <%=h @daicho.desc1 %>
+</p>
+
+<p>
+  <b>Boy:</b>
+  <%=h @daicho.boy_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_daicho_path(@daicho) %> |
+<%= link_to 'Back', daichos_path %>

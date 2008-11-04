@@ -1,0 +1,62 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>教育機関（表示）</td>
+  </tr>  
+</TABLE>
+
+<TABLE ID="menu2" CLASS="part">
+<%= error_messages_for :edu_inst %>
+<tr>
+  <td colspan=32 style="text-align:right;">
+    <%= link_to '一 覧', edu_insts_path %>|
+    <%= link_to '新規登録', new_edu_inst_path %>|
+  </td>
+</tr>
+<tr>
+  <% 32.times do %>
+    <td></td>
+  <% end %>
+</tr>
+<tr>
+  <th colspan=10>フリガナ</th>
+  <td colspan=22>
+    <%=h @edu_inst.kana_name %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>名　称</th>
+  <td colspan=22>
+    <%=h @edu_inst.name %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>分　類</th>
+  <td colspan=22>
+    <%=h @edu_inst.cat %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>郵便番号</th>
+  <td colspan=22>
+    <%=h @edu_inst.zip %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>住　所</th>
+  <td colspan=22>
+    <%=h @edu_inst.add %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>電話番号</th>
+  <td colspan=22>
+    <%=h @edu_inst.tel %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>ﾌｧｯｸｽ番号</th>
+  <td colspan=22>
+    <%=h @edu_inst.fax %>
+  </td>
+</tr>
+</TABLE>

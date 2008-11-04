@@ -1,0 +1,16 @@
+<p>
+  <b>loginName:</b>
+  <%=h @user.login %>
+</p>
+
+<p>
+  <b>email:</b>
+  <%=h @user.email %>
+</p>
+<p>
+  <b>staffId:</b>
+  <%= @user.staff_id if @user.staff %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

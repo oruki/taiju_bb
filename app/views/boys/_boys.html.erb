@@ -1,0 +1,30 @@
+<TABLE ID="menu2" CLASS="part">
+  <tr>
+    <% 32.times do %>
+    <td></td>
+    <% end %>
+  </tr>
+  <tr>
+    <th colspan=5>ＩＤ</td>
+    <th colspan=7>氏　名</td>
+    <th colspan=7>ﾌﾘｶﾞﾅ</td>
+    <th colspan=6>生年月日</td>
+    <th colspan=3 style="text-align:center;">年齢</td>
+    <th colspan=4 style="text-align:center;">性別</td>
+  </tr>
+
+<% for boy in boys %>
+<tr>
+  <td colspan=5><%= boy.id %></td>
+  <td colspan=7><%= boy.name %></td>
+  <td colspan=7><%= boy.kana_name %></td>
+  <td colspan=6><%= boy.birthdate %></td>
+  <td colspan=3 style="text-align:center;"><%= boy.birthdate.age if boy.birthdate %></td>
+  <td colspan=3 style="text-align:center;"><%= boy.sex %></td>
+
+  <td><%= link_to image_tag("edit.gif", :border=>0), edit_boy_path(boy) %></td>
+
+</tr>
+<% end %>
+
+</TABLE>

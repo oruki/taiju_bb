@@ -1,0 +1,12 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>面接外泊記録（一覧）</td>
+  </tr>  
+</TABLE>
+<%= render(:partial => "shared/header_com",
+           :locals => {:recs => @stay_out_recs}) %>
+
+<div ID="StayOutRecsPart">
+  <%= render(:partial => "shared/stay_out_recs", 
+             :object => @stay_out_recs) %>
+</div>

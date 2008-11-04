@@ -1,0 +1,67 @@
+<script type="text/javascript">
+  _translations = {
+    "OK": "OK",
+    "Now": "現在",
+    "Today": "今日" 
+  }
+  Date.weekdays = $w("日 月 火 水 木 金 土");
+  Date.months = $w("1 2 3 4 5 6 7 8 9 10 11 12" );
+</script>
+
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>指導員勤務記録（編集）</td>
+  </tr>  
+</TABLE>
+
+<TABLE ID="menu2" CLASS="part">
+<% t=Time.now %>
+<% d=Attend.find(:all).map{|i| [i.misc] } %>
+<% a= Staff.find(:all).map{|k| [k.name, k.id]} %>
+<%= error_messages_for :attend %>
+  <tr>
+    <td colspan=32 style="text-align:right; ">
+      <%= link_to '一覧表示', attends_path %>
+    </td>
+  </tr>
+<tr>
+  <% 32.times do %>
+    <td></td>
+  <% end %>
+</tr>
+
+<% form_for(@attend) do |f| %>
+<tr>
+  <th colspan=6>スタッフ</th>
+  <td colspan=26><%= f.select(:staff_id, a, {:include_blank=>true}) %></td>
+</tr>
+<tr>
+  <th colspan=6>出勤時間</th>
+  <td colspan=26>
+    <%= f.datetime_select :time_start, :use_month_numbers => true, 
+                               :start_year => 2006, 
+                               :end_year => 2009 %>
+  </td>
+</tr>
+<tr>
+  <th colspan=6>退出時間</th>
+  <td colspan=26>
+    <%= f.datetime_select :time_end, :use_month_numbers => true, 
+                               :start_year => Date.today.years_ago(3).year, 
+                               :end_year => Date.today.years_since(3).year %>
+  </td>
+</tr>
+<tr>
+  <th colspan=6>備　考</th>
+  <td colspan=26><%= f.text_field :misc %></td>
+</tr>
+
+<tr>
+  <td colspan=32 style="text-align:right">    
+    <%= f.submit "更新" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= link_to 'このレコードを削除する', @attend, :confirm => 'Are you sure?', :method => :delete %>
+  </td>
+</tr>
+
+<% end %>
+</TABLE>

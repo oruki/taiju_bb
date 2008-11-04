@@ -1,0 +1,6 @@
+page.replace_html("abcd", @yotei) 
+page["abcd"].visual_effect :highlight,
+                                  :startcolor => "#ff9900",
+                                  :endcolor   => "#ffff99"                              
+#page.visual_effect :appear, "diary"
+page["xvx"].visual_effect (:appear)

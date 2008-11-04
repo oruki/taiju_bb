@@ -1,0 +1,12 @@
+
+<h3>学校生活記録</h3><hr>
+<% for column in SchoolRec.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @school_rec.send(column.name) %>
+</p>
+<% end %>
+
+
+<%= link_to 'Edit', edit_school_rec_path(@school_rec) %> |
+<%= link_to 'Back', school_recs_path %>
+<hr>

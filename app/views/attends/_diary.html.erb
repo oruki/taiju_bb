@@ -1,0 +1,73 @@
+<table ID="menu2" class="part">
+  <tr>
+    <% 32.times do |i| -%>
+      <td></td>
+    <% end %>
+  </tr>
+
+  <tr>
+    <td colspan=6 style="font-size:11px;">
+    
+<% form_remote_tag :url => {:controller => 'staff_recs', :action => 'new_staff_rec', :attnd => @attend } do %>
+
+       <% a0=@attend.time_start.strftime("%H").to_i %>
+       <% a1=@attend.time_end.strftime("%H").to_i %>
+       <% a=(a0...a1).map{|i| i.to_s} %>
+       <% b=%w{00 15 30 45}.map{|i| i} %>
+       <%= select_tag 'hour', options_for_select(a) %> 時  
+       <%= select_tag 'min',  options_for_select(b) %> 分
+    </td>
+     
+    <td colspan=8 style="font-size:11px;">
+      <label><%= radio_button_tag (:in_out, '外出' ) %>外出</label>
+      <label><%= radio_button_tag (:in_out, '帰院' ) %>帰院</label>
+      <label><%= radio_button_tag (:in_out, '在院' ) %>在院</label>
+    </td>
+    
+    <td colspan=6 style="font-size:11px;">
+       用件
+       <% op = %w{--用件-- 出張 研修 会議 買物 届け物 送迎 その他公用 その他私用} %>
+       <%= select_tag :yoken, options_for_select(op) %>     
+    </td>
+    
+    <td colspan=8 style="font-size:11px;">
+      内容
+      <%= text_field :staff_rec, :naiyo, :size=>30 %>
+    </td>
+    
+    <td colspan=4 style="font-size:11px;">   
+      <%= submit_tag "入力" %>    
+<% end -%>
+    </td>
+  </tr>
+</TABLE>
+
+
+
+<TABLE ID="menu2" CLASS="part">
+  <tr>
+  <% 32.times do %>
+    <td></td>
+  <% end %>
+  </tr>
+  <tr>
+    <th colspan=5>時間</th>
+    <th colspan=5>指導員</th>
+    <th colspan=5>外出</th>
+    <th colspan=8>用件</th>
+    <th colspan=9>内容</th>
+  </tr>
+
+<% for staff_rec in @staff_recs %>
+  <tr>
+    <td colspan=5>
+      <%=h staff_rec.time.strftime("%I:%M") %>
+    </td>
+    <td colspan=5><%=h staff_rec.attend.staff.name %></td>
+    <td colspan=5><%=h staff_rec.in_out %></td>
+    <td colspan=8><%=h staff_rec.yoken %></td>
+    <td colspan=8><%=h staff_rec.naiyo %></td>
+    <td colspan=1><%= link_to 'E', edit_staff_rec_path(staff_rec) %></td>
+  </tr>
+<% end %>
+</table>

@@ -1,0 +1,4 @@
+page.replace_html("box", :partial => "box", :object => @attr)
+page[:box].visual_effect :highlight,
+                                  :startcolor => "#ff9900",
+                                  :endcolor   => "#ffff99"

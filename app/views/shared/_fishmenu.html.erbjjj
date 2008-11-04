@@ -1,0 +1,87 @@
+<!-- ナビゲーションメニュー -->
+
+<ul id="sample-menu-4" class="sf-menu sf-navbar">
+					<li>
+
+						<a class="sf-with-ul" href="#">long menu item<span class="sf-sub-indicator"> &#187;</span></a>
+						<ul>
+							<li><a href="#">subitem 1a</a></li>
+							<li><a href="#">subitem 1b</a></li>
+							<li><a href="#">subitem 1c</a></li>
+							<li><a href="#">subitem 1d</a></li>
+
+						</ul>
+					</li>
+					<li class="current">
+						<a class="sf-with-ul" href="#">menu item<span class="sf-sub-indicator"> &#187;</span></a>
+						<ul>
+							<li>
+								<a class="sf-with-ul" href="#">subitem 2a<span class="sf-sub-indicator"> &#187;</span></a>
+
+								<ul>
+									<li><a href="#">menu item</a></li>
+									<li><a href="#aba">menu item</a></li>
+									<li><a href="#abb">menu item</a></li>
+									<li><a href="#abc">menu item</a></li>
+									<li><a href="#abd">menu item</a></li>
+
+								</ul>
+							</li>
+							<li class="current">
+								<a class="sf-with-ul" href="#">path to current<span class="sf-sub-indicator"> &#187;</span></a>
+								<ul>
+									<li><a href="#">menu item</a></li>
+									<li><a href="#aba">menu item</a></li>
+
+									<li><a href="#abb">menu item</a></li>
+									<li class="current"><a href="#abc">current page</a></li>
+									<li><a href="#abd">menu item</a></li>
+								</ul>
+							</li>
+							<li>
+								<a class="sf-with-ul" href="#">subitem 2c<span class="sf-sub-indicator"> &#187;</span></a>
+
+								<ul>
+									<li><a href="#">menu item</a></li>
+									<li><a href="#aba">menu item</a></li>
+									<li><a href="#abb">menu item</a></li>
+									<li><a href="#abc">menu item</a></li>
+									<li><a href="#abd">menu item</a></li>
+
+								</ul>
+							</li>
+							<li><a href="#">subitem 2d</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="sf-with-ul" href="#">menu item<span class="sf-sub-indicator"> &#187;</span></a>
+
+						<ul>
+							<li><a href="#">if no subitems, duplicate parent item href and use this as descriptive label</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="sf-with-ul" href="#">menu item<span class="sf-sub-indicator"> &#187;</span></a>
+						<ul>
+
+							<li><a href="#">subitem 4a</a></li>
+							<li><a href="#">subitem 4b</a></li>
+							<li><a href="#">subitem 4c</a></li>
+							<li><a href="#">subitem 4d</a></li>
+						</ul>
+					</li>
+					<li>
+
+						<a class="sf-with-ul" href="#">menu item<span class="sf-sub-indicator"> &#187;</span></a>
+						<ul>
+							<li><a href="#">subitem 5a</a></li>
+							<li><a href="#">subitem 5b</a></li>
+							<li><a href="#">subitem 5c</a></li>
+							<li><a href="#">subitem 5d</a></li>
+
+						</ul>
+					</li>
+				</ul>
+
+		
+				</ul>

@@ -1,0 +1,126 @@
+<script type="text/javascript">
+  _translations = {
+    "OK": "OK",
+    "Now": "現在",
+    "Today": "今日" 
+  }
+
+  Date.weekdays = $w("日 月 火 水 木 金 土");
+
+  Date.months = $w("1 2 3 4 5 6 7 8 9 10 11 12" );
+
+</script>
+
+<%= error_messages_for :stay_out_rec %>
+<% form_for(stay_out_rec) do |f| %>
+
+<table ID="menu2" CLASS="part">
+
+<tr>
+  <% 32.times do %>
+  <td></td>
+  <% end %>
+</tr>
+
+<tr>
+  <th colspan=4>児 童</th>
+  <td colspan=12>
+    <%= f.select(:boy_id, Boy.find(:all).map{|i|[i.name,i.id]}, {:include_blank => true} ) %>
+  </td>
+  <th colspan=4>日付</th>
+  <td colspan=12>
+    <%#= calendar_date_select :stay_out_rec, :date %>
+    <%= f.date_select(:date,{ :include_blank => true, 
+                              :use_month_numbers => true,
+                              :start_year => Date.today.years_ago(3).year, 
+                              :end_year   => Date.today.year})  %> 
+  </td>
+</tr>
+<tr>
+  <th colspan=4>期間（自）</th>
+  <td colspan=12>
+    <%#= calendar_date_select :stay_out_rec, :period_from %>
+    <%= f.date_select(:period_from,{ :include_blank => true, 
+                                      :use_month_numbers => true,
+                                      :start_year => Date.today.years_ago(3).year, 
+                                      :end_year   => Date.today.year})  %> 
+  </td>
+  <th colspan=4>期間（至）</th>
+  <td colspan=12>
+    <%#= calendar_date_select :stay_out_rec, :period_to %>
+    <%= f.date_select(:period_to,{ :include_blank => true, 
+                                      :use_month_numbers => true,
+                                      :start_year => Date.today.years_ago(3).year, 
+                                      :end_year   => Date.today.year})  %> 
+  </td>
+</tr>
+<tr>
+  <th colspan=4>場所</th>
+  <td colspan=12>
+    <%= f.text_field :place %>
+  </td>
+  <th colspan=4>区分</th>
+  <td colspan=12>
+    <%= f.select(:case_category, ['面会','外出','外泊','その他'], {:include_blank => true} ) %>
+  </td>
+</tr>
+
+<tr>
+  <th colspan=4>保護者</th>
+  <td colspan=12>
+    <%= f.select(:guardian_id, Guardian.find(:all).map{|i|[i.name,i.id]}, {:include_blank => true} ) %>
+  </td>
+  <th colspan=4>責任者住所</th>
+  <td colspan=12>
+    ***
+  </td>
+</tr>
+
+<tr>
+  <th colspan=4>申請者住所</th>
+  <td colspan=12>
+    <%= f.text_field :app_address %>
+  </td>
+  <th colspan=4>申請者氏名</th>
+  <td colspan=12>
+    <%= f.text_field :app_name %>
+  </td>
+</tr>
+
+<tr>
+  <th colspan=4>申請日</th>
+  <td colspan=12>
+    <%#= calendar_date_select :stay_out_rec, :app_date %>
+    <%= f.date_select(:app_date, { :include_blank => true, 
+                                    :use_month_numbers => true,
+                                    :start_year => Date.today.years_ago(3).year, 
+                                    :end_year   => Date.today.year})  %> 
+  </td>
+  <th colspan=4>受取日</th>
+  <td colspan=12>
+    <%#= calendar_date_select :stay_out_rec, :rcv_date %>
+    <%= f.date_select(:rcv_date, { :include_blank => true, 
+                                   :use_month_numbers => true,
+                                   :start_year => Date.today.years_ago(3).year, 
+                                   :end_year   => Date.today.year})  %> 
+  </td>
+</tr>
+
+<tr>
+  <th colspan=4>受付担当者</th>
+  <td colspan=12>
+    <%= f.text_field :rcv_name %>
+  </td>
+  <th colspan=4>確認欄</th>
+  <td colspan=12>
+    <%= f.select(:confirmation, ['確認済み','保留','拒否','その他'], {:include_blank => true} ) %>
+  </td>
+</tr>
+
+<tr>
+  <td colspan=32 style="text-align:right;">
+    <%= f.submit "更新・登録" %>
+  </td>
+</tr>
+</table>
+<% end %>

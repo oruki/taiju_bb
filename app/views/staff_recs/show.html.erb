@@ -1,0 +1,28 @@
+<p>
+  <b>Time:</b>
+  <%=h @staff_rec.time %>
+</p>
+
+<p>
+  <b>Attend:</b>
+  <%=h @staff_rec.attend_id %>
+</p>
+
+<p>
+  <b>In out:</b>
+  <%=h @staff_rec.in_out %>
+</p>
+
+<p>
+  <b>Yoken:</b>
+  <%=h @staff_rec.yoken %>
+</p>
+
+<p>
+  <b>Naiyo:</b>
+  <%=h @staff_rec.naiyo %>
+</p>
+
+
+<%= link_to 'Edit', edit_staff_rec_path(@staff_rec) %> |
+<%= link_to 'Back', staff_recs_path %>

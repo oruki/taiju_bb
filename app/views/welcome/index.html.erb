@@ -1,0 +1,33 @@
+<table ID="menu3" CLASS="part" style="width:100%; padding:20px; text-align:center; background-repeat : no-repeat;background-position:center;" background="http://bb.emu.railsplayground.net/images/bigTree.png">
+<tr>
+  <% 7.times do %> <td></td><% end %>
+</tr>
+
+<tr></tr><tr></tr>
+<tr>
+  <td colspan=1></td>
+  <th colspan=5 >
+<br><br><br><br>
+    <p style="font-size:14px;">こんにちわ『<%= current_user.login %>』さん、<br>
+    ログインに成功しました。</p>
+    <p>今日は<%= Date.today %>です</p>
+    <hr>
+    <%= link_to 'ログアウト', logout_url %>&nbsp;|&nbsp;
+    <span style="color:orange">
+      <%= link_to '出勤簿にすすむ', new_attend_path %>
+    </span>
+    <hr>
+    current_user.login⇒　<%= current_user.login %>　です<br>
+    current_user.idは　<%= current_user.id %>　です<br>
+    <% if current_user.staff %>
+      staffName⇒<%= current_user.staff.name %>
+    <% else %>
+      このﾕｰｻﾞｰに該当するｽﾀｯﾌはいません
+    <% end %>
+
+  </th>
+  <td colspan=1></td>
+</tr>
+
+
+</table>

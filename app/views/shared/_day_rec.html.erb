@@ -1,0 +1,38 @@
+<% form_for(day_rec) do |f| %>
+<table ID="menu2" CLASS="part">
+  <tr>
+    <% 32.times do |i| -%>
+      <td></td>
+    <% end %>
+  </tr>
+  <tr>
+    <th colspan=12>日　付</th>
+    <td colspan=20>
+      <%#= calendar_date_select :day_rec, :hizuke %>
+      <%= f.date_select(:hizuke,{ :include_blank => true, 
+                                  :use_month_numbers => true,
+                                  :start_year => Date.today.years_ago(3).year, 
+                                  :end_year   => Date.today.year})  %>
+    </td>                                  
+  </tr>
+  <tr>
+    <th colspan=12>天　気</th>
+    <td colspan=20><%= f.text_field :tenki %></td>
+  </tr>
+  <tr>
+    <th colspan=12>出来事</th>
+    <td colspan=20><%= f.text_field :dekigoto %></td>
+  </tr>
+  <tr>
+    <th colspan=12>備　考</th>
+    <td colspan=20><%= f.text_field :misc %></td>
+  </tr>
+  <tr>
+    <th colspan=12>登録／更新</th>
+    <td colspan=20>
+      <%= f.submit "登録／更新" %>
+      <%= link_to 'このレコードを削除する', @day_rec, :confirm => '本当に削除しますか？', :method => :delete %></td>&nbsp;&nbsp;&nbsp;
+    </td>
+  </tr>
+</table>
+<% end %>

@@ -1,0 +1,17 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>ｸﾞﾙｰﾌﾟ業務記録（登録）</td>
+  </tr>  
+</TABLE>
+
+<TABLE ID="menu2" CLASS="part">
+<tr>
+  <td style="text-align:right;">
+    <%= link_to '一 覧', group_recs_path %>
+  </td>
+</tr>
+</TABLE>
+
+<%= render(:partial => "shared/group_rec",
+           :object => @group_rec) %>
+       

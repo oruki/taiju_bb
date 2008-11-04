@@ -1,0 +1,6 @@
+page.replace_html(:c01, :partial => "aux", :object => @shien_keikaku.c01 )
+page.replace_html(:c02, :partial => "aux", :object => @shien_keikaku.c02 )
+page.replace_html("c03", :partial => "aux", :object => @attrval )
+page[@attr].visual_effect :highlight,
+                                  :startcolor => "#ff9900",
+                                  :endcolor   => "#ffff99"

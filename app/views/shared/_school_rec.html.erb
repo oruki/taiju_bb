@@ -1,0 +1,61 @@
+<%= error_messages_for :school_rec %>
+
+<% form_for(school_rec) do |f| %>
+
+<table ID="menu2" CLASS="part">
+  <tr>
+  <% 32.times do %>
+    <td></td>
+  <% end %>
+  </tr>
+
+  <tr>
+    <td colspan=3>日　付</td>
+    <td colspan=11>    
+      <%#= calendar_date_select :school_rec, :date %>
+      <%= f.date_select(:date,{ :include_blank => true, 
+                                :use_month_numbers => true,
+                                :start_year => Date.today.years_ago(3).year, 
+                                :end_year   => Date.today.year})  %>
+      
+      
+    </td>
+    <td colspan=3>児　童</td>
+    <td colspan=6>
+      <%=@boys = Boy.find(:all, :order => "id").map {|u| [u.name, u.id] }
+                 f.select(:boy_id, @boys, {:include_blank => true} ) %>
+    </td>
+    <td colspan=3>ｽﾀｯﾌ</td>
+    <td colspan=6>
+      <%= @staffs = Staff.find(:all, :order => "id").map {|u| [u.name, u.id] }
+                   f.select(:staff_id, @staffs, {:include_blank => true}) %>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan=3>登校状況</td>
+    <td colspan=13>
+      <%#= f.text_field :status %>
+      <%= f.select(:status, %w{欠席 遅刻 早退 休校}, {:include_blank => true}) %>
+    </td>
+    <td colspan=3>備　考</td>
+    <td colspan=13><%= f.text_field :misc %></td>
+  </tr>
+
+  <tr>
+    <td colspan=3>連 絡<br>学校へ</td>
+    <td colspan=13>
+      <%= f.text_area :message_to, :cols=>20, :rows=>5 %>
+    </td>
+    <td colspan=3>連 絡<br>学校から</td>
+    <td colspan=13>
+      <%= f.text_area :message_from, :cols=>20, :rows=>5 %>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan=3>登録</td>
+    <td colspan=29><%= f.submit "登録" %></td>
+  </tr>
+</table>
+<% end %>

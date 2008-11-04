@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>bBoys: <%= controller.action_name %></title>
+  <%= stylesheet_link_tag 'base' %>
+</head>
+<body>
+<div id=container>
+
+  <div id=header style="font-size:8pt">
+     <img src ="/boon.png" width="100%"><br>
+       <%= link_to 'Boys', { :controller => "boys", :action => "index" } %>&nbsp;|&nbsp;
+       <%= link_to 'Staffs', { :controller => "staffs", :action => "index" } %>&nbsp;|&nbsp;
+       <%= link_to 'Rels', { :controller => "rels", :action => "index" } %>&nbsp;|&nbsp;
+       <%= link_to 'Goup', { :controller => "groups", :action => "index" } %>&nbsp;|&nbsp;
+       <%= link_to 'JidoGrpRels', { :controller => "jido_grp_rels", :action => "index" } %>&nbsp;|&nbsp;
+       <%= link_to 'Guardians', { :controller => "guardians", :action => "index" } %>&nbsp;|&nbsp;
+       <%= link_to 'JidoGuardianRels', { :controller => "jido_guardian_rels", :action => "index" } %>&nbsp;|&nbsp;
+       <%= link_to 'ShidouRecs', { :controller => "shidou_recs", :action => "index" } %>&nbsp;|&nbsp;
+       <%= link_to 'SchoolRecs', { :controller => "school_recs", :action => "index" } %>&nbsp;|&nbsp;
+       <%= link_to 'JidoEduRels', { :controller => "jido_edu_rels", :action => "index" } %>&nbsp;|&nbsp;
+       <%= link_to 'EduInsts', { :controller => "edu_insts", :action => "index" } %>&nbsp;|&nbsp;
+       <%= link_to 'StayOutRecs', { :controller => "stay_out_recs", :action => "index" } %>&nbsp;|&nbsp;
+       <%= link_to 'MedRecs', { :controller => "med_recs", :action => "index" } %>&nbsp;|&nbsp;
+       <%= link_to 'MedInsts', { :controller => "med_insts", :action => "index" } %>&nbsp;|&nbsp;
+       <%= link_to 'Attends', { :controller => "attends", :action => "index" } %>&nbsp;|&nbsp;
+  </div>
+
+  <div id=left style="color: grey; font-size:8pt">
+     <p style="color: green;font-size:9pt"><%= flash[:notice] %></p>
+     <%= yield  %>
+  </div>
+
+  <div id=right style="color:grey;font-size:8pt;text-align:center">
+     <span> 右のサイドボックス </span><br/><br/><br/>
+<hr>
+<% unless @select == nil %>
+  <%= render (:partial => "test" , :object => @select ) %> 
+<% end %>
+<hr>
+     <div style="font-size:14pt; font-weight:bold"><%= Time.now.strftime("%Y/%m/%d(%a)") %><br/><br/><br/>
+     <div style="font-size:9pt; color:grey; margin-left:25px"> <%= calendar(:year => 2008, :month => 1) %> </div>
+  </div>
+
+</div>
+</body>
+</html>

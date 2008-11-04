@@ -1,0 +1,36 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>児童グループ</td>
+  </tr>  
+</TABLE>
+
+<TABLE ID="menu2" CLASS="part">
+  <tr>
+    <td colspan=32 style="text-align:right;">
+      <span style="margin-right:25px">レコード件数：<%= @groups.size %>件</span>
+      <%= link_to '新規登録', new_group_path %>
+    </td>
+  </tr>
+  <tr>
+    <% 32.times do |i| %>
+      <td></td>
+    <% end %>
+  </tr>
+  <tr>
+    <th colspan=7>ｸﾞﾙｰﾌﾟID</th>
+    <th colspan=4>ｸﾞﾙｰﾌﾟ名</th>
+    <th colspan=7>ｶﾃｺﾞﾘｰ</th>
+    <th colspan=14>備　考</th>
+  </tr>
+
+<% for group in @groups %>
+  <tr>
+    <td colspan=7><%=h group.id %></td>
+    <td colspan=4><%=h group.name %></td>
+    <td colspan=7><%=h group.cat %></td>
+    <td colspan=13><%=h group.misc %></td>
+    <td colspan=1><%= link_to image_tag("edit.gif", :border=>0), edit_group_path(group) %></td>
+
+  </tr>
+<% end %>
+</TABLE>

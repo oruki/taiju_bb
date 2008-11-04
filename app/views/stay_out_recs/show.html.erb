@@ -1,0 +1,12 @@
+<h3>面会・外出・外泊記録</h3>
+<% for column in StayOutRec.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @stay_out_rec.send(column.name) %>
+</p>
+<% end %>
+
+
+<%= link_to 'Edit', edit_stay_out_rec_path(@stay_out_rec) %> |
+<%= link_to 'Back', stay_out_recs_path %>
+
+

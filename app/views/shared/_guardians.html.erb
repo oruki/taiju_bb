@@ -1,0 +1,43 @@
+<table ID="menu2" CLASS="part">
+  <tr>
+    <% 32.times do %>
+      <td></td>
+    <% end %>
+  </tr>
+  <tr>
+    <th colspan=5>ﾌﾘｶﾞﾅ/氏名</th>
+    <th colspan=6>続柄･年齢･性別<br>生年月日</th>
+    <th colspan=4>職　業<br>収　入</th>
+    <th colspan=3>健康状態</th>
+    <th colspan=7>電　話<br>携　帯</th>
+    <th colspan=7>備　考</th>
+  </tr>
+
+<% for guardian in guardians %>
+  <tr>
+
+    <td colspan=5>
+      <span style="font-size:8px"><%=h guardian.kana_name %></span><br>
+      <%=h guardian.name %>
+    </td>
+    <td colspan=6>
+      <div style="width:30%; float:left;"><%=h guardian.birth_date.age %>歳</div>
+      <div style="width:25%; float:left; text-align:center"><%=h %w{性 男 女}[guardian.sex] %></div><br>
+      <%=h guardian.birth_date %>
+    </td>
+    <td colspan=4>
+      <%=h guardian.occupation %><br>
+      <%=h guardian.cond_income %>
+    </td>
+    <td colspan=3><%=h guardian.cond_health %></td>
+    <td colspan=7>
+      H:<%=h guardian.tel %><br>
+      HP:<%=h guardian.tel_hp %>
+    </td>
+    <td colspan=6><%=h guardian.misc %></td>
+
+    <td colspan=1><%= link_to image_tag("edit.gif", :border=>0), edit_guardian_path(guardian) %></td>
+
+  </tr>
+<% end %>
+</table>

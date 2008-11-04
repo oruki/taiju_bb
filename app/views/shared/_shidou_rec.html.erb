@@ -1,0 +1,47 @@
+<% form_for(shidou_rec) do |f| %>
+  <%= f.error_messages %>
+<table ID="menu2" CLASS="part">
+  <tr>
+    <% 32.times do %>
+      <td></td>
+    <% end %>
+  </tr>
+
+  <tr>
+    <td colspan=3>日 付</td>
+    <td colspan=11>
+      <%#= calendar_date_select :shidou_rec, :date %> 
+      <%= f.date_select(:date,{ :include_blank => true, 
+                                  :use_month_numbers => true,
+                                  :start_year => Date.today.years_ago(3).year, 
+                                  :end_year   => Date.today.year})  %>      
+    </td>
+    <td colspan=3>児　童</td>
+    <td colspan=6>
+      <% bb = Boy.find(:all, :order => "id").map {|u| [u.name, u.id] } %>
+      <%= f.select(:boy_id, bb, {:include_blank => true}) %>
+    </td>
+    <td colspan=3>ｽﾀｯﾌ</td>
+    <td colspan=6>
+      <% ss = Staff.find(:all, :order => "id").map {|u| [u.name, u.id] } %>
+      <%= f.select(:staff_id, ss, {:include_blank => true}) %>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan=3>ｶﾃｺﾞﾘｰ</td>
+    <td colspan=11>
+      <%= f.text_area :cat, :cols=>20, :rows=>5 %>
+    </td>
+    <td colspan=3>内容</td>
+    <td colspan=15>
+      <%= f.text_area :desc, :cols=>28, :rows=>5 %>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan=32><%= f.submit "登録/更新" %></td>   
+  </tr>
+ 
+</table>
+<% end %>

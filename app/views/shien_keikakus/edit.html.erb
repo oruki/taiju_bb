@@ -1,0 +1,86 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>支援計画（編集）</td>
+  </tr>  
+</TABLE>
+<%= error_messages_for :shien_keikaku %>
+
+
+<%= error_messages_for :shien_keikaku %>
+
+<% form_for(@shien_keikaku) do |f| %>
+<TABLE ID="menu2" CLASS="part">
+  <tr>
+    <% 32.times do %>
+    <td></td>
+    <% end %>
+  </tr>
+  
+ 
+  
+  <tr>
+    <th colspan=10>策定番号</td>
+    <td colspan=22><%= f.text_field :sakutei_bango, :rows => 2, :cols => 56 %></td>
+  </tr>  
+  <tr>
+    <th colspan=10>児童</td>
+    <td colspan=6>
+      <% bb = Boy.find(:all, :order => "id").map {|u| [u.name, u.id] } %>
+      <%= f.select(:boy_id, bb, {:include_blank => true}) %>
+    </td>
+  </tr>
+    <tr>
+    <th colspan=10>指導員</td>
+    <td colspan=6>
+      <% ss = Staff.find(:all, :order => "id").map {|u| [u.name, u.id] } %>
+      <%= f.select(:staff_id, ss, {:include_blank => true}) %>
+    </td>
+  </tr>
+  <tr>
+    <th colspan=10>主たる問題</td>
+    <td colspan=22><%= f.text_area :shutaru_mondai, :rows => 2, :cols => 56 %></td>
+  </tr>
+  <tr>
+    <th colspan=10>本人の意向</b></td>
+    <td colspan=22><%= f.text_area :honnin_ikou, :rows => 2, :cols => 56 %></td>
+  </tr>
+  <tr>
+    <th colspan=10>保護者の意向</th>
+    <td colspan=22><%= f.text_area :hogosha_ikou, :rows => 2, :cols => 56 %></td>
+  </tr>
+  <tr>
+    <th colspan=10>学校等の意見</th>
+    <td colspan=22><%= f.text_area :school_iken, :rows => 2, :cols => 56 %></td>
+  </tr>
+  <tr>
+    <th colspan=10>児童相談協議</th>
+    <td colspan=22><%= f.text_area :jidou_sodan_kyogi, :rows => 2, :cols => 56 %></td>
+  </tr>
+  <tr>
+    <th colspan=10>支援方針</th>
+    <td colspan=22><%= f.text_area :shien_hoshin, :rows => 2, :cols => 56 %></td>
+  </tr>
+  <tr>
+    <th colspan=10>長期目標（子ども）</th>
+    <td colspan=22><%= f.text_area :choki_kodomo, :rows => 2, :cols => 56 %></td>
+  </tr>
+  <tr>
+    <th colspan=10>長期目標（家庭）</th>
+    <td colspan=22><%= f.text_area :choki_katei, :rows => 2, :cols => 56 %></td>
+  </tr>
+  <tr>
+    <th colspan=10>長期目標（地域）</th>
+    <td colspan=22><%= f.text_area :choki_chiiki, :rows => 2, :cols => 56 %></td>
+  </tr>
+  <tr>
+    <th colspan=10>長期目標（総合）</th>
+    <td colspan=22><%= f.text_area :choki_sogo, :rows => 2, :cols => 56 %></td>
+  </tr>
+
+  <tr>
+    <th colspan=10>登録/更新</th>
+    <td colspan=22><%= f.submit "登録/更新" %></td>
+  </tr>
+
+</table>
+<% end %>

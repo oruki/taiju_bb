@@ -1,0 +1,50 @@
+<!-- ■3■児童ｸﾞﾙｰﾌﾟの記録■■ --> 
+
+
+<div ID="fold_group">
+<% form_remote_tag( :url => { :action => :sel_grp_recs, :id => @attend , :grp_ids => @thegroup_ids} ) do %>
+
+<TABLE ID="menu2" CLASS="part">
+  <tr>
+    <% 32.times do %>
+      <td></td>
+    <% end %>
+  </tr>
+  <tr>
+    <td colspan=3 style="font-size:12px;">
+      期間：
+    </td>
+    <td colspan=16 style="font-size:11px;">
+      <label><%= radio_button_tag (:grp, 'all', checked = (session[:grp]=='all')) %>全ｸﾞﾙｰﾌﾟ</label>
+      <label><%= radio_button_tag (:grp, 'on',  checked = (session[:grp]=='on' )) %>担当ｸﾞﾙｰﾌﾟ</label>    
+
+    </td>
+
+    <td colspan=4>
+      <%= submit_tag "選択" %>
+    </td>
+    <td colspan=3>
+      <%= link_to '新規登録', :action=>"new" %>  
+    </td>    
+
+    <td colspan=6 style="text-align:right;">
+      <span style="margin-right:25px">
+        レコード件数：<%#= recs.size %>件
+      </span>
+    </td>
+  </tr>
+</TABLE>
+
+<% end %>
+
+<% if @grp_recs_today %>
+  <div ID="grp_recs_today">
+    <%= render( :partial => "attends/grp_recs_today", :object => @grp_recs_today ) %>
+    上の選択条件を設定して選択ボタンをクリック
+  </div>
+<% else %>
+  <%= "新規"  %>
+<% end %>
+
+ </div>
+    

@@ -1,0 +1,39 @@
+<!--
+パーシャルの文字ﾘﾝｸで再描画（絞込みなど）を行うためにパーシャルはリダイレクト先
+の情報を保有している必要がある。つまりパーシャル呼出時に:local=>設定でパラメーター
+を渡す。呼出元のアクション、呼出元で行う処理に必要なフラグなど。
+-->
+
+<table ID="menu2" CLASS="part">
+<tr>
+  <% 32.times do |i| %>
+  <td></td>
+  <% end %>
+</tr>
+  <tr>
+    <th colspan=5>ｸﾞﾙｰﾌﾟ/日付</th>
+    <th colspan=16>業務記録</th>
+    <th colspan=5>備考</th>
+    <th colspan=6>伺い</th>
+  </tr>
+
+<% for group_rec in grp_recs_today %>
+  <tr>
+    <td colspan=5>
+      <%=h group_rec.group.name if group_rec.group_id %>
+      <%=h group_rec.group_id if group_rec.group_id %>
+      <%=h group_rec.hizuke %>
+    </td>
+    <td colspan=16>
+      <%=h group_rec.desc %>
+    </td>
+    <td colspan=5>
+      <%=h group_rec.misc %>
+    </td>
+    <td colspan=5>
+      <%=h group_rec.query %>
+    </td>
+    <td colspan=1><%= link_to image_tag("edit.gif", :border=>0), edit_group_rec_path(group_rec) %></td>
+  </tr>
+<% end %>
+</table>

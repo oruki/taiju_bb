@@ -1,0 +1,41 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>児童保護者関係（新規登録）</td>
+  </tr>  
+</TABLE>
+
+<TABLE ID="menu2" CLASS="part"> 
+<%= error_messages_for :jido_guardian_rel %>
+  <tr>
+    <td colspan=32 style="text-align:right; ">
+        <%= link_to '一覧表示', jido_guardian_rels_path %>
+    </td>
+  </tr>
+  <tr>
+    <% 32.times do %>
+      <td></td>
+    <% end %>
+  </tr>
+<% form_for(@jido_guardian_rel) do |f| %>
+  <tr>
+    <th colspan=12>児 童</th>
+    <td colspan=20><%= f.select(:boy_id, Boy.find(:all).map{|i|[i.name,i.id]}, {:include_blank => true} ) %></td>
+  </tr>
+  <tr>
+    <th colspan=12>保護者</th>
+    <td colspan=20><%= f.select(:guardian_id, Guardian.find(:all).map{|i|[i.name,i.id]}, {:include_blank => true} ) %></td>
+  </tr>
+  <tr>
+    <th colspan=12>関係</th>
+    <td colspan=20><%= f.text_field :relation %></td>
+  </tr>
+  <tr>
+    <th colspan=12>続柄</th>
+    <td colspan=20><%= f.text_field :zokugara %></td>
+  </tr>
+  <tr>
+    <th colspan=12>登録/更新</th>
+    <td colspan=20><%= f.submit "登録/更新" %>
+  </tr>
+<% end %>
+</TABLE> 

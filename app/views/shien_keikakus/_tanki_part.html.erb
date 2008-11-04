@@ -1,0 +1,82 @@
+<!--
+
+-->
+
+<TABLE ID="menu2" CLASS="part">
+<tr>
+  <td colspan="32">
+    <div style = "float:right; vertical-align:bottom; padding:5px">
+      <%= link_to_function image_tag("edit.gif", :border=>0), visual_effect(:appear, target) %> 
+    </div>    
+    【長期目標】<%=  eval '@shien_keikaku' + '.' + target %>
+  </td>
+</tr>
+<tr>
+  <% 32.times do %>
+    <td></td>
+  <% end %>
+</tr>
+
+<!--
+支援計画各入力欄の「編集」リンクから呼ばれて当該編集入力パーツを表示モードに変える
+-->  
+  <tr style="display:none;">
+  <td colspan="32">
+      <% form_for(@shien_keikaku) do |f| %>   
+    </td>
+  </tr>
+
+  <tr ID = <%= target %> style="display:none;">
+    <td colspan=27><%= f.text_area target, :rows => 2, :cols => 56 %></td>
+    <td colspan=5>
+      <%= f.submit "登録/更新" %><br>
+      <%= link_to_function '中止',visual_effect(:fade, target) %>
+    </td>
+  </tr>  
+<!--
+  <tr ID="choki_katei" style="display:none;">
+    <td colspan=27><%= f.text_area :choki_katei, :rows => 2, :cols => 56 %></td>
+    <td colspan=5>
+      <%= f.submit "登録/更新" %><br>
+      <%= link_to_function '中止',visual_effect(:fade, "choki_katei") %>
+    </td>
+  </tr>
+  
+  <tr ID="choki_chiiki" style="display:none;">
+    <td colspan=27><%= f.text_area :choki_chiiki, :rows => 2, :cols => 56 %></td>
+    <td colspan=5>
+      <%= f.submit "登録/更新" %><br>
+      <%= link_to_function '中止',visual_effect(:fade, "choki_chiiki") %>
+    </td>
+  </tr>  
+
+  <tr ID="choki_sogo" style="display:none;">
+    <td colspan=27><%= f.text_area :choki_sogo, :rows => 2, :cols => 56 %></td>
+    <td colspan=5>
+      <%= f.submit "登録/更新" %><br>
+      <%= link_to_function '中止',visual_effect(:fade, "choki_sogo") %>
+    </td>
+  </tr> 
+-->
+
+  <tr ID="submit" style="display:none;">
+    <td><% end %></td>
+  </tr>
+<!--
+以上　隠し入力フィールド -->
+
+
+<tr>
+  <td colspan="8">支援上の課題</td>
+  <td colspan="8">支援目的</td>
+  <td colspan="8">支援内容・方法</td>
+  <td colspan="8">評価（内容・期日）</td>
+</tr>
+<tr>
+  <td colspan="32">
+    <%= render(:partial => "shared/tanki_shien_mokuhyos.html.erb", 
+               :object  =>  TankiShienMokuhyo.cat_01.shien_keikaku_id (@shien_keikaku),
+               :locals  =>  { :cat => cat , :label => label, :choki => choki}) %>
+  </td>
+</tr>
+</TABLE>

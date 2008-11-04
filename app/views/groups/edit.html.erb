@@ -1,0 +1,47 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>児童グループ（新規登録）</td>
+  </tr>  
+</TABLE>
+
+<TABLE ID="menu2" CLASS="part">
+<%= error_messages_for :group %>
+<tr>
+  <td colspan=32 style="text-align:right;">
+  <%= link_to '一覧表示', groups_path %>
+  </td>
+</tr>
+<% form_for(@group) do |f| %>
+<tr>
+  <% 32.times do %>
+    <td></td>
+  <% end %>
+</tr>
+<tr>
+  <th colspan=10>名　称</th>
+  <td colspan=22>
+    <%= f.text_field :name %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>カテゴリー</th>
+  <td colspan=22>
+    <%= f.text_field :cat %>
+  </td>
+</tr>
+<tr>
+  <th colspan=10>備 考</th>
+  <td colspan=22>
+    <%= f.text_field :misc %>
+  </td>
+</tr>
+
+<tr>
+  <th colspan=10>登録／更新;</th>
+  <td colspan=22>
+    <%= f.submit "登録／更新" %>
+    <%= link_to 'このレコードを削除する', @group, :confirm => '本当に削除しますか?', :method => :delete %> 
+  </td>
+</tr>
+<% end %>
+</TABLE>

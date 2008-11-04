@@ -1,0 +1,50 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td> 教育機関（一覧）</td>
+  </tr>  
+</TABLE>
+
+<TABLE ID="menu2" CLASS="part">
+<tr>
+  <td colspan=32 style="text-align:right; ">
+    <span style="margin-right:25px">レコード件数：<%= @edu_insts.size %></span>
+    <%= link_to '新規登録', new_edu_inst_path %>
+  </td>
+</tr>
+  <tr>
+    <% 32.times do %>
+      <td></td>
+    <% end %>
+  </tr>
+  <tr>
+    <th colspan=4>ID／分類</th>
+    <th colspan=7>ﾌﾘｶﾞﾅ／名称</th>
+    <th colspan=14>ZIP／住所</th>
+    <th colspan=7>電話／ﾌｧｯｸｽ</th>
+  </tr>
+
+<% for edu_inst in @edu_insts %>
+  <tr>
+    <td colspan=4>
+      <span style="font-size:9px;"><%= edu_inst.id %></span><br>
+      <%=h edu_inst.cat %>
+    </td>
+    <td colspan=7>
+      <span style="font-size:7px;"><%=h edu_inst.kana_name %></span><br>
+      <%=h edu_inst.name %>
+    </td>
+    <td colspan=14>
+      <%=h edu_inst.zip %><br>
+      <%=h edu_inst.add %>
+    </td>
+    <td colspan=6>
+      T：<%=h edu_inst.tel %><br>
+      F：<%=h edu_inst.fax %>
+    </td>
+    <td colspan=1>
+      <%= link_to image_tag("edit.gif", :border=>0), edit_edu_inst_path(edu_inst) %>
+    </td>
+  </tr>
+<% end %>
+
+</TABLE>

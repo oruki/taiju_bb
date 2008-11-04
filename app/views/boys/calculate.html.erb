@@ -1,0 +1,8 @@
+<% for boy in boys %>
+<%= boy.id %>,
+<%= boy.name %>,
+<%= boy.kana_name %>,
+<%= boy.birthdate %>,
+<%= boy.birthdate.age if boy.birthdate %>,
+<%= boy.sex %>,
+<% end %>

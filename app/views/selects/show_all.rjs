@@ -1,0 +1,3 @@
+page["tag"].visual_effect :highlight,
+                                  :startcolor => "#ff9900",
+                                  :endcolor   => "#ffff99"

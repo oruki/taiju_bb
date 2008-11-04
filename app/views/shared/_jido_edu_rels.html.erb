@@ -1,0 +1,65 @@
+<div ID = "jido_edu_rels">
+<TABLE ID="menu2" CLASS="part"> 
+  <tr>
+    <% 31.times do |i| %>
+    <td></td>
+    <% end %>
+    <td onmouseover="this.style.background='red';this.style.cursor='pointer'"
+        onmouseout="this.style.background='white';" onclick="alert('bang')"></td>
+  </tr>
+  <tr style="text-align:left">
+    <th colspan=5>児童ID/氏名</th>
+    <th colspan=2>年齢</th>
+    <th colspan=5>ID/名称</th>
+    <th colspan=3>区分</th>
+    <th colspan=2>ﾌﾗｸﾞ</th>
+    <th colspan=4>終了日</th>
+    <th colspan=11>作成/更新日</th>
+  </tr>
+  
+<% for jido_edu_rel in @jido_edu_rels %>
+  <tr>
+    <td colspan=5>
+      <%=h jido_edu_rel.boy_id %> <br>
+      <%#=h jido_edu_rel.boy.name %>
+      <%= link_to_remote (jido_edu_rel.boy.name, 
+               :url =>{:controller => :selects, 
+                       :action => "select_jido_in_jido_edu_rels", 
+                       :id => jido_edu_rel, :boy => jido_edu_rel.boy}) %>
+    </td>
+    <td colspan=2>
+      <%=h jido_edu_rel.boy.birthdate.age %>
+    </td>
+    <td colspan=5>
+      <%=h jido_edu_rel.edu_inst_id %> <br>
+      <%#=h jido_edu_rel.edu_inst.name %>
+      <%= link_to_remote (jido_edu_rel.edu_inst.name, 
+               :url =>{:controller => :selects, 
+                       :action => "select_jido_in_jido_edu_rels", 
+                       :id => jido_edu_rel, :edu_inst_name => jido_edu_rel.edu_inst}) %>
+    </td>
+    <td colspan=3>
+      <%#=h jido_edu_rel.edu_inst.cat %>
+      <%= link_to_remote (jido_edu_rel.edu_inst.cat, 
+               :url =>{:controller => :selects, 
+                       :action => "select_jido_in_jido_edu_rels", 
+                       :id => jido_edu_rel, :edu_inst_cat => jido_edu_rel.edu_inst.cat}) %>
+      
+      
+      
+    </td>
+    <td colspan=2>
+      <%=h jido_edu_rel.val_flag %>
+    </td>
+    <td colspan=4>
+      <%=h jido_edu_rel.date_expired %>
+    </td>
+    <td colspan=10>
+      <%=h jido_edu_rel.created_at %><br>
+      <%=h jido_edu_rel.updated_at %>
+    </td>
+    <td colspan=1> <%= link_to image_tag("edit.gif", :border=>0), edit_jido_edu_rel_path(jido_edu_rel) %> </td>
+  </tr>
+<% end %>
+</TABLE>
+</div>

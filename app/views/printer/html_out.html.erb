@@ -1,0 +1,49 @@
+<TABLE style="table-layout: fixed;">
+  <tr>
+    <% 32.times do -%>
+    <td></td>
+    <% end -%>
+  </tr>
+  <tr>
+    <th colspan=5>ＩＤ</th>
+    <th colspan=7>氏　名</th>
+    <th colspan=7>ﾌﾘｶﾞﾅ</th>
+    <th colspan=6>生年月日</th>
+    <th colspan=3 style="text-align:center;">年齢</th>
+    <th colspan=4 style="text-align:center;">性別</th>
+  </tr>
+
+<% for boy in @boys %>
+<tr>
+  <td colspan=5><%= boy.id %></td>
+  <td colspan=7><%= boy.name %></td>
+  <td colspan=7><%= boy.kana_name %></td>
+  <td colspan=6><%= boy.birthdate %></td>
+  <td colspan=3 style="text-align:center;"><%= boy.birthdate.age if boy.birthdate %></td>
+  <td colspan=4 style="text-align:center;"><%= boy.sex %></td
+</tr>
+<% end %>
+
+</TABLE>
+<h2>児童一覧表</h2>
+<table>
+  <tr>
+    <th>ＩＤ</td>
+    <th>氏　名</td>
+    <th>ﾌﾘｶﾞﾅ</td>
+    <th>生年月日</td>
+    <th>年齢</td>
+    <th>性別</td>
+  </tr>
+
+<% for boy in @boys %>
+<tr>
+  <td><%= boy.id %></td>
+  <td><%= boy.name %></td>
+  <td><%= boy.kana_name %></td>
+  <td><%= boy.birthdate %></td>
+  <td><%= boy.birthdate.age if boy.birthdate %></td>
+  <td><%= boy.sex %></td>
+</tr>
+<% end %>
+</table>

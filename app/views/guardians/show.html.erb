@@ -1,0 +1,22 @@
+<p>
+  <b>Name:</b>
+  <%=h @guardian.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_guardian_path(@guardian) %> |
+<%= link_to 'Back', guardians_path %>
+
+
+
+<h3>保護者情報</h3>
+
+<% for column in Guardian.columns %>
+
+<p>
+  <b><%= column.human_name %>:</b> <%=h @guardian.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', edit_med_rec_path(@guardian) %> |
+<%= link_to 'Back', guardians_path %>

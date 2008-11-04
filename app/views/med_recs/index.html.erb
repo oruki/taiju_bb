@@ -1,0 +1,12 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>医療･健康記録（一覧）</td>
+  </tr>  
+</TABLE>
+<%= render(:partial => "shared/header_com",
+           :locals => {:recs => @med_recs}) -%>
+
+<div ID="MedRecsPart">
+  <%= render(:partial => "shared/med_recs",
+             :object => @med_recs) %>
+</div>

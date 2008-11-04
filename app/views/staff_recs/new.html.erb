@@ -1,0 +1,66 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>指導員日誌（登録）</td>
+  </tr>  
+</TABLE>
+
+<TABLE ID="menu2" CLASS="part">
+<tr>
+  <td style="text-align:right; ">
+    <%= link_to '一 覧', staff_recs_path %>
+  </td>
+</tr>
+</TABLE>
+
+  
+<TABLE ID="menu2" CLASS="part">  
+  <tr>
+  <% 32.times do %>
+    <td></td>
+  <% end %>
+  </tr>
+<% form_for(@staff_rec) do |f| %>
+  <%= f.error_messages %>
+  
+  
+  <tr>
+    <th colspan=12>時間</th>
+    <td colspan=20>
+      <%= time_select :staff_rec, 'time', {:minute_step => 15} %>
+    </td>
+  </tr>
+  
+  <tr>
+    <th colspan=12>出勤記録ID</th>
+    <td colspan=20>
+      <%= f.text_field :attend_id %>
+    </td>
+  </tr> 
+    
+  <tr>
+    <th colspan=12>外出記録</th>
+    <td colspan=20>
+      <%= f.text_field :in_out %>
+    </td>
+  </tr> 
+  <tr>
+    <th colspan=12>用件</th>
+    <td colspan=20>
+      <%= f.text_field :yoken %>
+    </td>
+  </tr> 
+  <tr>
+    <th colspan=12>内容</th>
+    <td colspan=20>
+      <%= f.text_field :naiyo %>
+    </td>
+  </tr> 
+  <tr>
+    <th colspan=12>登録</th>
+    <td colspan=20>
+      <%= f.submit "登録／更新" %>
+    </td>
+  </tr> 
+<% end %>
+
+</TABLE>

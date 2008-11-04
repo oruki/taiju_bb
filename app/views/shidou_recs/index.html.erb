@@ -1,0 +1,10 @@
+<TABLE ID="TITLE" CLASS="fix">
+  <tr>
+    <td>指導記録（一覧）</td>
+  </tr>  
+</TABLE>
+<%= render(:partial => "shared/header_com",
+           :locals => {:recs => @shidou_recs}) %>
+
+<%= render(:partial => "shared/shidou",
+           :object => @shidou_recs ) %>

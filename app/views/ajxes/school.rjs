@@ -1,0 +1,8 @@
+page.replace_html("japan",
+  :partial => "shared/school_recs",
+  :object => @school_recs
+)
+
+page[:japan].visual_effect :highlight,
+                                  :startcolor => "#ff9900",
+                                  :endcolor   => "#ffff99"

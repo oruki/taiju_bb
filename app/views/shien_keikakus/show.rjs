@@ -1,0 +1,3 @@
+page.replace_html("aa", :partial => "aux", :object => @shien_keikaku.honnin_ikou )
+page.replace_html("bb", :partial => "aux", :object => @shien_keikaku.hogosha_ikou )
+page.replace_html("cc", :partial => "aux", :object => @shien_keikaku.school_iken )
